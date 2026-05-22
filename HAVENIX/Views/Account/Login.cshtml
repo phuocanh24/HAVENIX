@@ -1,0 +1,41 @@
+﻿﻿<div class="auth-box">
+
+    <h2>Đăng nhập</h2>
+
+    @using (Html.BeginForm())
+    {
+        <input name="email"
+               placeholder="Email"
+               class="form-control" />
+
+        <input type="password"
+               name="password"
+               placeholder="Mật khẩu"
+               class="form-control" />
+
+        <button type="submit"
+                class="btn btn-warning">
+            Đăng nhập
+        </button>
+
+        <p style="color:red; margin-top:10px;">
+            @ViewBag.Error
+        </p>
+
+        <div class="auth-links">
+
+            <label>
+                <input type="checkbox" />
+                Lưu mật khẩu
+            </label>
+
+            <br />
+
+            <a href="#">
+                Quên mật khẩu?
+            </a>
+
+        </div>
+    }
+
+</div>

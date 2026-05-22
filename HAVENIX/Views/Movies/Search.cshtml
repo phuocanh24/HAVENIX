@@ -1,0 +1,30 @@
+﻿﻿@model IEnumerable<havenix.Models.Movie>
+
+@{
+    ViewBag.Title = "Tìm phim";
+}
+
+<h2>Kết quả tìm kiếm</h2>
+
+<div class="movie-grid">
+
+    @foreach (var item in Model)
+    {
+        <div class="movie-card">
+
+            <img src="@item.Image" />
+
+            <div class="movie-info">
+
+                <h4>@item.Name</h4>
+
+                <p>@item.Genre</p>
+
+                <p>@item.Duration phút</p>
+
+            </div>
+
+        </div>
+    }
+
+</div>

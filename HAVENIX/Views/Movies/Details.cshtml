@@ -1,0 +1,107 @@
+﻿﻿@model havenix.Models.Movie
+
+@{
+    var grouped = Model.Showtimes
+        .GroupBy(x => x.StartTime.Date)
+        .OrderBy(x => x.Key)
+        .ToList();
+}
+
+<div class="movie-banner" style="background-image:url('@Model.Image')">
+    <div class="overlay">
+        <h1>@Model.Name</h1>
+        <p>@Model.Genre | @Model.Duration | @Model.Language</p>
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+<div class="showtime-container">
+
+    <h2>CHỌN NGÀY CHIẾU</h2>
+
+    <div class="date-tabs">
+        @foreach (var day in grouped)
+        {
+            <button type="button"
+                    class="tab-btn"
+                    data-day="@day.Key.ToString("yyyy-MM-dd")"
+                    onclick="showDay(this)">
+                @day.Key.ToString("dd/MM")
+            </button>
+        }
+    </div>
+
+    <div class="time-content">
+        @foreach (var day in grouped)
+        {
+            <div class="time-group"
+                 data-day="@day.Key.ToString("yyyy-MM-dd")"
+                 style="display:none">
+
+                <h3>@day.Key.ToString("dddd - dd/MM")</h3>
+
+                <div class="time-list">
+                    @foreach (var item in day)
+                    {
+                        <button type="button"
+                                class="time-btn"
+                                onclick="showBooking(this, @item.Id)">
+                            @item.StartTime.ToString("HH:mm")
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <a id="bookingBtn"
+       href="#"
+       class="btn btn-warning"
+       style="display:none; margin-top:20px;">
+        Đặt vé phim
+    </a>
+
+</div>
+
+<script>
+    function showDay(btn) {
+        let day = btn.getAttribute("data-day");
+
+        document.querySelectorAll(".tab-btn")
+            .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        document.querySelectorAll(".time-group")
+            .forEach(x => x.style.display = "none");
+
+        document.querySelectorAll(".time-btn").forEach(x => {
+            x.style.background = "#0b1220";
+            x.style.color = "white";
+        });
+
+        let target = document.querySelector(".time-group[data-day='" + day + "']");
+        if (target) target.style.display = "block";
+
+        document.getElementById("bookingBtn").style.display = "none";
+    }
+
+    function showBooking(btn, id) {
+        document.querySelectorAll(".time-btn").forEach(x => {
+            x.style.background = "#0b1220";
+            x.style.color = "white";
+        });
+
+        btn.style.background = "#facc15";
+        btn.style.color = "black";
+
+        let booking = document.getElementById("bookingBtn");
+        booking.style.display = "inline-block";
+        booking.href = "/Booking/Create?showtimeId=" + id;
+    }
+
+    window.onload = function () {
+        let first = document.querySelector(".tab-btn");
+        if (first) first.click();
+    }
+</script>

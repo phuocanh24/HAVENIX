@@ -1,0 +1,49 @@
+﻿﻿@model IEnumerable<havenix.Models.Movie>
+
+@{
+    ViewBag.Title = "Danh sách phim";
+}
+
+<div class="movie-section">
+
+    <h2>DANH SÁCH PHIM</h2>
+
+    <div class="movie-track">
+
+        @foreach (var item in Model)
+        {
+            <div class="movie-card">
+
+                <!-- DETAILS -->
+                <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
+                   style="text-decoration:none; color:inherit; display:block;">
+
+                    <img src="@item.Image" alt="@item.Name" />
+
+                    <div class="movie-info">
+
+                        <h3>@item.Name</h3>
+
+                        <p><b>Thể loại:</b> @item.Genre</p>
+
+                        <p><b>Thời lượng:</b> @item.Duration</p>
+
+                        <p><b>Ngày chiếu:</b> @item.ReleaseDate</p>
+
+                    </div>
+
+                </a>
+
+                <!-- NÚT XEM LỊCH CHIẾU -->
+                <a href="@Url.Action("Showtimes", "Movies", new { id = item.Id })"
+                   class="btn btn-info"
+                   style="width:100%; margin-top:10px;">
+                    Xem lịch chiếu
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</div>

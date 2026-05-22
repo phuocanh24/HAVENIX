@@ -1,0 +1,61 @@
+﻿﻿@using havenix.Models
+@model IEnumerable<havenix.Models.Showtime>
+
+@{
+    var movie = ViewBag.Movie as Movie;
+}
+
+<h2>@movie.Name</h2>
+
+<form method="get">
+    <input type="hidden" name="id" value="@movie.Id" />
+
+    <input type="date"
+           name="date"
+           value="@ViewBag.SelectedDate.ToString("yyyy-MM-dd")"
+           onchange="this.form.submit()" />
+</form>
+
+<hr />
+
+<h3>Giờ chiếu</h3>
+
+@if (Model.Any())
+{
+    foreach (var s in Model)
+    {
+        <button type="button"
+                onclick="showBooking(this,@s.Id)"
+                class="time-btn">
+            @s.StartTime.ToString("HH:mm") - @s.Room
+        </button>
+    }
+
+    <br />
+
+    <a id="bookingBtn"
+       class="btn btn-warning"
+       style="display:none; margin-top:20px;">
+        Đặt vé phim
+    </a>
+}
+else
+{
+    <p>Không có suất chiếu ngày này</p>
+}
+
+<script>
+    function showBooking(btn, id) {
+
+        document.querySelectorAll(".time-btn")
+            .forEach(x => x.classList.remove("active-time"));
+
+        btn.classList.add("active-time");
+
+        var booking = document.getElementById("bookingBtn");
+
+        booking.style.display = "inline-block";
+
+        booking.href = "/Booking/Create?showtimeId=" + id;
+    }
+</script>

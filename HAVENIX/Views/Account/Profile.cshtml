@@ -1,0 +1,23 @@
+﻿﻿@{
+    ViewBag.Title = "Trang cá nhân";
+}
+
+<div class="auth-box">
+
+    <h2>TRANG CÁ NHÂN</h2>
+
+    <p><b>Tên đăng nhập:</b> @Session["User"]</p>
+
+    <p><b>Họ và tên:</b> Nguyễn Văn A</p>
+
+    <p><b>Email:</b> example@gmail.com</p>
+
+    <p><b>Số điện thoại:</b> 0123456789</p>
+
+    <p><b>Giới tính:</b> Nam</p>
+
+    <a href="/Account/Logout" class="logout-btn">
+        Đăng xuất
+    </a>
+
+</div>
