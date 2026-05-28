@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using havenix.Data;
 
-namespace havenix.Controllers
+namespace HAVENIX.Controllers
 {
     public class ShowtimesController : Controller
     {

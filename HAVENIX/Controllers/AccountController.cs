@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace havenix.Controllers
+namespace HAVENIX.Controllers
 {
     public class AccountController : Controller
     {

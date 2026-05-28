@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿@{
     ViewBag.Title = "Havenix Cinema";
 }
 
@@ -8,9 +8,7 @@
      data-bs-ride="carousel"
      data-bs-interval="3000">
 
-    <!-- DOT -->
     <div class="carousel-indicators">
-
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="1"></button>
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="2"></button>
@@ -21,65 +19,52 @@
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="7"></button>
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="8"></button>
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="9"></button>
-
     </div>
 
-    <!-- IMAGE -->
     <div class="carousel-inner">
 
-        <!-- SLIDE 1 -->
         <div class="carousel-item active">
-            <img src="~/Img/banner1.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner1.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 2 -->
         <div class="carousel-item">
-            <img src="/Img/banner2.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner2.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 3 -->
         <div class="carousel-item">
-            <img src="/Img/banner3.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner3.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 4 -->
         <div class="carousel-item">
-            <img src="/img/banner4.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner4.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 5 -->
         <div class="carousel-item">
-            <img src="/img/banner5.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner5.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 6 -->
         <div class="carousel-item">
-            <img src="/img/banner6.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner6.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 7 -->
         <div class="carousel-item">
-            <img src="/img/banner7.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner7.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 8 -->
         <div class="carousel-item">
-            <img src="/img/banner8.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner8.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 9 -->
         <div class="carousel-item">
-            <img src="/img/banner9.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner9.jpg")" class="d-block w-100">
         </div>
 
-        <!-- SLIDE 10 -->
         <div class="carousel-item">
-            <img src="/img/banner10.jpg" class="d-block w-100">
+            <img src="@Url.Content("~/Img/banner10.jpg")" class="d-block w-100">
         </div>
 
     </div>
 
-    <!-- BUTTON -->
     <button class="carousel-control-prev"
             type="button"
             data-bs-target="#mainBanner"
@@ -102,16 +87,15 @@
 
 <div class="movie-section">
 
-    <!-- TAB -->
     <div class="movie-tabs">
 
         <button class="tab-btn active"
-                onclick="showMovieTab('dangchieu')">
+                onclick="showMovieTab('dangchieu', event)">
             ĐANG CHIẾU
         </button>
 
         <button class="tab-btn"
-                onclick="showMovieTab('sapchieu')">
+                onclick="showMovieTab('sapchieu', event)">
             SẮP CHIẾU
         </button>
 
@@ -124,45 +108,37 @@
 
             <div class="movie-track">
 
-                <div class="movie-card">
-                    <img src="/img/bogia.jpg" />
+                <a href="@Url.Action("Details","Movies", new { id = 152 })"
+                   class="movie-card">
+                    <img src="@Url.Content("~/Content/Img/bogiaposter.jpg")" />
                     <div class="movie-info">
                         <h3>Bố Già</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
                     </div>
-                </div>
+                </a>
 
-                <div class="movie-card">
-                    <img src="/img/nhabanu.jpg" />
+                <a href="@Url.Action("Details","Movies", new { id = 153 })"
+                   class="movie-card">
+                    <img src="@Url.Content("~/Content/Img/nhabanuposter.jpg")" />
                     <div class="movie-info">
                         <h3>Nhà Bà Nữ</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
                     </div>
-                </div>
+                </a>
 
-                <div class="movie-card">
-                    <img src="/img/doraemon.jpg" />
+                <a href="@Url.Action("Details","Movies", new { id = 155 })"
+                   class="movie-card">
+                    <img src="@Url.Content("~/Content/Img/doraemonposter.jpg")" />
                     <div class="movie-info">
                         <h3>Doraemon</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
                     </div>
-                </div>
+                </a>
 
-                <div class="movie-card">
-                    <img src="/img/mai.jpg" />
+                <a href="@Url.Action("Details","Movies", new { id = 151 })"
+                   class="movie-card">
+                    <img src="@Url.Content("~/Content/Img/maipos.jpg")" />
                     <div class="movie-info">
                         <h3>Mai</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
                     </div>
-                </div>
-
-                <div class="movie-card">
-                    <img src="/img/aot.jpg" />
-                    <div class="movie-info">
-                        <h3>Attack On Titan</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
-                    </div>
-                </div>
+                </a>
 
             </div>
 
@@ -177,37 +153,49 @@
 
             <div class="movie-track">
 
-                <div class="movie-card">
-                    <img src="/img/thamtukien.jpg" />
+                <a href="@Url.Action("Details","Movies", new { id = 159 })"
+                   class="movie-card">
+
+                    <img src="@Url.Content("~/Content/Img/thamtukienposter.jpg")" />
+
                     <div class="movie-info">
                         <h3>Thám Tử Kiên</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
                     </div>
-                </div>
 
-                <div class="movie-card">
-                    <img src="/img/thooi.jpg" />
+                </a>
+
+                <a href="@Url.Action("Details","Movies", new { id = 162 })"
+                   class="movie-card">
+
+                    <img src="@Url.Content("~/Content/Img/thooiposter.jpg")" />
+
                     <div class="movie-info">
                         <h3>Thỏ Ơi</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
                     </div>
-                </div>
 
-                <div class="movie-card">
-                    <img src="/img/phicong.jpg" />
-                    <div class="movie-info">
-                        <h3>Phi Công</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
-                    </div>
-                </div>
+                </a>
 
-                <div class="movie-card">
-                    <img src="/img/banner1.jpg" />
+                <a href="@Url.Action("Details","Movies", new { id = 158 })"
+                   class="movie-card">
+
+                    <img src="@Url.Content("~/Content/Img/sieuluaposter.jpg")" />
+
                     <div class="movie-info">
-                        <h3>Avengers</h3>
-                        <a href="#" class="book-btn">🎟 ĐẶT VÉ</a>
+                        <h3>Siêu Lừa Gặp Siêu Lầy</h3>
                     </div>
-                </div>
+
+                </a>
+
+                <a href="@Url.Action("Details","Movies", new { id = 160 })"
+                   class="movie-card">
+
+                    <img src="@Url.Content("~/Content/Img/latmat8poster.jpg")" />
+
+                    <div class="movie-info">
+                        <h3>Lật Mặt 8</h3>
+                    </div>
+
+                </a>
 
             </div>
 
@@ -218,7 +206,7 @@
 </div>
 
 <script>
-    function showMovieTab(tabId) {
+    function showMovieTab(tabId, event) {
 
         document.querySelectorAll('.movie-content')
             .forEach(x => x.classList.remove('active'));

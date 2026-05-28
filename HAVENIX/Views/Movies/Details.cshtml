@@ -1,4 +1,4 @@
-﻿﻿@model havenix.Models.Movie
+﻿@model havenix.Models.Movie
 
 @{
     var grouped = Model.Showtimes
@@ -7,12 +7,127 @@
         .ToList();
 }
 
-<div class="movie-banner" style="background-image:url('@Model.Image')">
-    <div class="overlay">
-        <h1>@Model.Name</h1>
-        <p>@Model.Genre | @Model.Duration | @Model.Language</p>
-        <p>@Model.Description</p>
+<div class="movie-detail-box compact-detail">
+
+    <div class="detail-poster">
+        <img class="poster-small" src="@Url.Content(Model.Image)" alt="@Model.Name" />
     </div>
+
+    <div class="detail-info">
+        <h1>@Model.Name</h1>
+        <hr />
+
+        <p>
+            <b>Đạo diễn:</b>
+
+            @switch (Model.Name)
+            {
+                case "MAI":
+                    @:Trấn Thành
+                    break;
+
+                case "BỐ GIÀ":
+                    @:Trấn Thành, Vũ Ngọc Đãng
+                    break;
+
+                case "Nhà Bà Nữ":
+                    @:Trấn Thành
+                    break;
+
+                case "LẬT MẶT 7: MỘT ĐIỀU ƯỚC":
+                    @:Lý Hải
+                    break;
+
+                case "DORAEMON: KHÁM PHÁ ĐÁY ĐẠI DƯƠNG":
+                    @:Imai Kazuaki
+                    break;
+
+                case "THANH GƯƠM DIỆT QUỶ: VÔ HẠN THÀNH":
+                    @:Haruo Sotozaki
+                    break;
+
+                case "ATTACK ON TITAN 4":
+                    @:Yuichiro Hayashi
+                    break;
+
+                case "SIÊU LỪA GẶP SIÊU LẦY":
+                    @:Võ Thanh Hòa
+                    break;
+
+                case "THÁM TỬ KIÊN: KỲ ÁN KHÔNG ĐẦU":
+                    @:Victor Vũ
+                    break;
+
+                case "LẬT MẶT 8: VÒNG TAY NẮNG":
+                    @:Lý Hải
+                    break;
+
+                default:
+                    @:Đang cập nhật
+                    break;
+            }
+        </p>
+
+        <p>
+            <b>Diễn viên:</b>
+
+            @switch (Model.Name)
+            {
+                case "MAI":
+                    @:Phương Anh Đào, Tuấn Trần, Trấn Thành, Hồng Đào, Uyển Ân
+                    break;
+
+                case "BỐ GIÀ":
+                    @:Trấn Thành, Tuấn Trần, Lê Giang, Lan Phương
+                    break;
+
+                case "Nhà Bà Nữ":
+                    @:Trấn Thành, Lê Giang, Uyển Ân, Song Luân, Khả Như
+                    break;
+
+                case "LẬT MẶT 7: MỘT ĐIỀU ƯỚC":
+                    @:Thanh Hiền, Đinh Y Nhung, Quách Ngọc Tuyên
+                    break;
+
+                case "DORAEMON: KHÁM PHÁ ĐÁY ĐẠI DƯƠNG":
+                    @:Doraemon, Nobita, Shizuka, Jaian, Suneo
+                    break;
+
+                case "THANH GƯƠM DIỆT QUỶ: VÔ HẠN THÀNH":
+                    @:Natsuki Hanae, Akari Kito, Yoshitsugu Matsuoka
+                    break;
+
+                case "ATTACK ON TITAN 4":
+                    @:Yuki Kaji, Marina Inoue, Hiroshi Kamiya
+                    break;
+
+                case "SIÊU LỪA GẶP SIÊU LẦY":
+                    @:Anh Tú, Mạc Văn Khoa, Thu Trang
+                    break;
+
+                case "THÁM TỬ KIÊN: KỲ ÁN KHÔNG ĐẦU":
+                    @:Quốc Huy, Đinh Ngọc Diệp, NSƯT Mỹ Uyên
+                    break;
+
+                default:
+                    @:Đang cập nhật
+                    break;
+            }
+        </p>
+
+        <p><b>Thể loại:</b> @Model.Genre</p>
+        <p><b>Khởi chiếu:</b> @Model.ReleaseDate</p>
+        <p><b>Thời lượng:</b> @Model.Duration</p>
+        <p><b>Ngôn ngữ:</b> @Model.Language</p>
+
+        <p>
+            <b>Rated:</b>
+            T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)
+        </p>
+
+        <p><b>Mô tả:</b> @Model.Description</p>
+    </div>
+
 </div>
 
 <div class="showtime-container">
@@ -67,7 +182,7 @@
     function showDay(btn) {
         let day = btn.getAttribute("data-day");
 
-        document.querySelectorAll(".tab-btn")
+        document.querySelectorAll(".date-tabs .tab-btn")
             .forEach(b => b.classList.remove("active"));
 
         btn.classList.add("active");
@@ -101,7 +216,7 @@
     }
 
     window.onload = function () {
-        let first = document.querySelector(".tab-btn");
+        let first = document.querySelector(".date-tabs .tab-btn");
         if (first) first.click();
     }
 </script>

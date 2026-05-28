@@ -10,7 +10,6 @@
 .custom-navbar {
     background: rgba(2, 6, 23, 0.95);
     backdrop-filter: blur(10px);
-    border: none;
     padding: 12px 0;
     box-shadow: 0 2px 15px rgba(0,0,0,0.5);
     z-index: 999;
@@ -21,7 +20,6 @@
         align-items: center;
     }
 
-/* LOGO */
 .navbar-brand {
     color: #facc15 !important;
     font-weight: bold;
@@ -29,7 +27,6 @@
     letter-spacing: 2px;
 }
 
-/* MENU */
 .navbar-nav {
     display: flex;
     align-items: center;
@@ -46,9 +43,9 @@
         padding: 10px 18px !important;
         border-radius: 30px;
         transition: 0.3s;
-        position: relative;
         font-weight: bold;
         text-decoration: none;
+        position: relative;
     }
 
         .navbar-nav .nav-link:hover {
@@ -60,7 +57,7 @@
             position: absolute;
             left: 15px;
             bottom: 4px;
-            width: 0%;
+            width: 0;
             height: 2px;
             background: #facc15;
             transition: 0.3s;
@@ -86,6 +83,7 @@ form.d-flex {
     .form-control:focus {
         box-shadow: none;
         background: #1e293b;
+        color: white;
     }
 
     .form-control::placeholder {
@@ -105,15 +103,21 @@ form.d-flex {
     }
 
 /* BANNER */
-.banner-slide img {
-    height: 500px;
-    object-fit: cover;
-    filter: brightness(0.55);
+.banner-slide {
+    margin-top: 20px;
+    border-radius: 18px;
+    overflow: hidden;
 }
 
-/* MOVIE SECTION */
+    .banner-slide img {
+        height: 520px;
+        object-fit: cover;
+        filter: brightness(0.65);
+    }
+
+/* HOME MOVIE */
 .movie-section {
-    padding: 40px 20px;
+    padding: 50px 20px;
     background: #020b2d;
 }
 
@@ -123,28 +127,29 @@ form.d-flex {
         font-size: 32px;
     }
 
-/* TABS */
 .movie-tabs {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: 14px;
+    margin-bottom: 30px;
 }
 
-.tab-btn {
-    background: transparent;
-    border: none;
-    color: #9ca3af;
-    font-size: 34px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-    .tab-btn.active {
+    .movie-tabs .tab-btn {
+        border: none;
+        background: #111827;
         color: white;
+        padding: 12px 26px;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
     }
 
-/* CONTENT */
+        .movie-tabs .tab-btn.active {
+            background: #facc15;
+            color: black;
+        }
+
 .movie-content {
     display: none;
 }
@@ -153,114 +158,154 @@ form.d-flex {
         display: block;
     }
 
-/* SLIDER */
-.movie-slider {
-    overflow: visible; /* bỏ scroll ngang */
-    padding-bottom: 15px;
-}
-
 .movie-track {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
-/* CARD */
 .movie-card {
     width: 100%;
-    background: #111c44;
-    border-radius: 12px;
+    background: #111827;
+    border-radius: 18px;
     overflow: hidden;
+    text-decoration: none;
+    color: white;
+    display: block;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.3);
     transition: 0.3s;
 }
 
     .movie-card:hover {
-        transform: translateY(-6px);
+        transform: translateY(-8px);
+        color: white;
     }
 
     .movie-card img {
         width: 100%;
-        height: 320px;
+        height: 340px;
         object-fit: cover;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .movie-card:hover img {
+        transform: scale(1.05);
+        filter: brightness(0.85);
     }
 
 .movie-info {
-    padding: 15px;
+    padding: 14px;
+    text-align: center;
+    background: linear-gradient(to top, #0f172a, #111827);
 }
 
     .movie-info h3 {
         color: white;
         font-size: 20px;
+        margin: 0;
+        font-weight: bold;
+    }
+
+/* MOVIE DETAILS */
+.movie-detail-box {
+    max-width: 850px;
+    margin: 40px auto;
+    display: flex;
+    gap: 20px;
+    background: #f5f1e8;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.detail-poster {
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+    flex: 0 0 140px;
+}
+
+    .detail-poster img,
+    .poster-small {
+        width: 140px;
+        height: 210px;
+        max-width: 140px;
+        max-height: 210px;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+.detail-info {
+    flex: 1;
+    color: #111827;
+}
+
+    .detail-info h1 {
+        font-size: 24px;
+        font-weight: bold;
         margin-bottom: 10px;
+        text-transform: uppercase;
+        color: #111827;
     }
 
-/* BOOK BUTTON */
-.book-btn {
-    display: block;
-    width: 100%;
-    background: #ef4444;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
+    .detail-info hr {
+        border: none;
+        border-top: 1px solid #d1d5db;
+        margin-bottom: 14px;
+    }
 
-/* FOOTER */
-footer {
-    background: #020617;
-    text-align: center;
-    padding: 30px;
-    margin-top: 50px;
-}
+    .detail-info p {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 6px;
+        color: #111827;
+    }
 
-.movie-banner {
-    height: 450px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
+    .detail-info b {
+        color: #000;
+    }
 
-.overlay {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 30px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    color: white;
-}
-
+/* SHOWTIME */
 .showtime-container {
+    max-width: 850px;
+    margin: 35px auto;
     padding: 25px;
-    margin: 20px;
-
-    .showtime-container {
-        background: rgba(3, 11, 44, 0.85);
-    }
-
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
+    background: rgba(3, 11, 44, 0.92);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
+
+    .showtime-container h2 {
+        color: #facc15;
+        margin-bottom: 20px;
+        font-size: 28px;
+        font-weight: bold;
+    }
 
 .date-tabs {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 
     .date-tabs .tab-btn {
         min-width: 85px;
-        padding: 10px 14px;
+        padding: 12px 16px;
         border-radius: 12px;
         border: 1px solid #334155;
         background: #0f172a;
         color: #cbd5e1;
+        font-size: 17px;
         font-weight: bold;
         cursor: pointer;
-        transition: 0.2s;
+        transition: 0.25s;
     }
 
         .date-tabs .tab-btn:hover {
@@ -271,32 +316,37 @@ footer {
         .date-tabs .tab-btn.active {
             background: linear-gradient(135deg, #facc15, #f59e0b);
             color: black;
-            transform: scale(1.06);
-            box-shadow: 0 10px 25px rgba(250, 204, 21, 0.25);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(250,204,21,0.3);
         }
 
 .time-group {
     margin-top: 20px;
-    margin-bottom: 25px;
     animation: fadeIn 0.25s ease;
 }
+
+    .time-group h3 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
 
 .time-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .time-btn {
-    padding: 10px 16px;
-    border-radius: 10px;
+    padding: 12px 18px;
+    border-radius: 12px;
     border: 1px solid #334155;
     background: #0b1220;
     color: #e2e8f0;
-    text-decoration: none;
+    font-size: 17px;
     font-weight: bold;
-    transition: 0.2s;
     cursor: pointer;
+    transition: 0.25s;
 }
 
     .time-btn:hover {
@@ -304,26 +354,14 @@ footer {
         color: white;
     }
 
-.active-time {
-    background: #facc15 !important;
-    color: black !important;
-    border: none !important;
-    transform: scale(1.05);
-    box-shadow: 0 8px 18px rgba(250, 204, 21, 0.35);
+#bookingBtn {
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* AUTH */
 .auth-box {
     max-width: 520px;
     margin: 50px auto;
@@ -348,9 +386,13 @@ footer {
         border-radius: 30px;
         border: 1px solid #334155;
         background: #0f172a;
-        color: white;
+        color: #facc15 !important;
         outline: none;
     }
+
+        .auth-box input::placeholder {
+            color: #facc15 !important;
+        }
 
         .auth-box input:focus,
         .auth-box select:focus {
@@ -376,13 +418,69 @@ footer {
         text-decoration: none;
     }
 
-.auth-box input,
-.auth-box select,
-.auth-box input::placeholder {
-    color: #facc15 !important;
+/* FOOTER */
+footer {
+    background: #020617;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
 }
 
-    .auth-box input:focus,
-    .auth-box select:focus {
-        color: #facc15 !important;
+/* ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
     }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .banner-slide img {
+        height: 300px;
+    }
+
+    .movie-track {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .movie-card img {
+        height: 260px;
+    }
+
+    .movie-detail-box {
+        flex-direction: column;
+        padding: 18px;
+        gap: 18px;
+    }
+
+    .detail-poster {
+        width: 140px;
+        min-width: 140px;
+        margin: auto;
+    }
+
+    .detail-info h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .detail-info p {
+        font-size: 14px;
+    }
+
+    .date-tabs .tab-btn,
+    .time-btn {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+
+    .showtime-container h2 {
+        font-size: 24px;
+    }
+}

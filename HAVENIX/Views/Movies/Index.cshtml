@@ -18,7 +18,7 @@
                 <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
                    style="text-decoration:none; color:inherit; display:block;">
 
-                    <img src="@item.Image" alt="@item.Name" />
+                    <img src="@Url.Content(item.Image)" alt="@item.Name" />
 
                     <div class="movie-info">
 
@@ -35,7 +35,7 @@
                 </a>
 
                 <!-- NÚT XEM LỊCH CHIẾU -->
-                <a href="@Url.Action("Showtimes", "Movies", new { id = item.Id })"
+                <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
                    class="btn btn-info"
                    style="width:100%; margin-top:10px;">
                     Xem lịch chiếu

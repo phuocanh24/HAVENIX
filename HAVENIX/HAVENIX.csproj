@@ -142,6 +142,10 @@
     <Compile Include="Migrations\202605221146543_UpdateModel.Designer.cs">
       <DependentUpon>202605221146543_UpdateModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202605271504286_FixMovieImages.cs" />
+    <Compile Include="Migrations\202605271504286_FixMovieImages.Designer.cs">
+      <DependentUpon>202605271504286_FixMovieImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HavenixDbContext.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -169,16 +173,28 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Img\banner1.jpg" />
-    <Content Include="Img\banner10.jpg" />
-    <Content Include="Img\banner2.jpg" />
-    <Content Include="Img\banner3.jpg" />
-    <Content Include="Img\banner4.jpg" />
-    <Content Include="Img\banner5.jpg" />
-    <Content Include="Img\banner6.jpg" />
-    <Content Include="Img\banner7.jpg" />
-    <Content Include="Img\banner8.jpg" />
-    <Content Include="Img\banner9.jpg" />
+    <Content Include="Content\Img\attachposter.jpg" />
+    <Content Include="Content\Img\banner1.jpg" />
+    <Content Include="Content\Img\banner10.jpg" />
+    <Content Include="Content\Img\banner2.jpg" />
+    <Content Include="Content\Img\banner3.jpg" />
+    <Content Include="Content\Img\banner4.jpg" />
+    <Content Include="Content\Img\banner5.jpg" />
+    <Content Include="Content\Img\banner6.jpg" />
+    <Content Include="Content\Img\banner7.jpg" />
+    <Content Include="Content\Img\banner8.jpg" />
+    <Content Include="Content\Img\banner9.jpg" />
+    <Content Include="Content\Img\bogiaposter.jpg" />
+    <Content Include="Content\Img\doraemonposter.jpg" />
+    <Content Include="Content\Img\latmat7poster.jpg" />
+    <Content Include="Content\Img\latmat8poster.jpg" />
+    <Content Include="Content\Img\maipos.jpg" />
+    <Content Include="Content\Img\nhabanuposter.jpg" />
+    <Content Include="Content\Img\quyposter.jpg" />
+    <Content Include="Content\Img\sieuluaposter.jpg" />
+    <Content Include="Content\Img\tgdqposter.jpg" />
+    <Content Include="Content\Img\thamtukienposter.jpg" />
+    <Content Include="Content\Img\thooiposter.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -256,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202605221146543_UpdateModel.resx">
       <DependentUpon>202605221146543_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202605271504286_FixMovieImages.resx">
+      <DependentUpon>202605271504286_FixMovieImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

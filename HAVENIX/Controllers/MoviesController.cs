@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 
-namespace havenix.Controllers
+namespace HAVENIX.Controllers
 {
     public class MoviesController : Controller
     {
@@ -21,17 +21,31 @@ namespace havenix.Controllers
         // SEARCH
         public ActionResult Search(string keyword)
         {
-            var movies = db.Movies
-                .Where(x => x.Name.Contains(keyword))
-                .GroupBy(x => x.Id)
-                .Select(g => g.FirstOrDefault())
-                .ToList();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                return RedirectToAction("Index");
+            }
 
-            return View("Index", movies);
+            keyword = keyword.Trim().ToLower();
+
+            var movie = db.Movies
+                .Include(x => x.Showtimes)
+                .FirstOrDefault(x =>
+                    x.Name.ToLower().Contains(keyword) ||
+                    keyword.Contains(x.Name.ToLower())
+                );
+
+            if (movie != null)
+            {
+                return RedirectToAction("Details", "Movies", new { id = movie.Id });
+            }
+
+            TempData["Message"] = "Không tìm thấy phim";
+            return RedirectToAction("Index");
         }
 
         // DETAILS
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             var movie = db.Movies
                 .Include("Showtimes")
