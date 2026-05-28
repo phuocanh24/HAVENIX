@@ -116,7 +116,6 @@
         </p>
 
         <p><b>Thể loại:</b> @Model.Genre</p>
-        <p><b>Khởi chiếu:</b> @Model.ReleaseDate</p>
         <p><b>Thời lượng:</b> @Model.Duration</p>
         <p><b>Ngôn ngữ:</b> @Model.Language</p>
 
@@ -191,8 +190,8 @@
             .forEach(x => x.style.display = "none");
 
         document.querySelectorAll(".time-btn").forEach(x => {
-            x.style.background = "#0b1220";
-            x.style.color = "white";
+            x.style.background = "white";
+            x.style.color = "#5b0b0b";
         });
 
         let target = document.querySelector(".time-group[data-day='" + day + "']");
