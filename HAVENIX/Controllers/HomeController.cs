@@ -26,5 +26,50 @@ namespace HAVENIX.Controllers
 
             return View();
         }
+
+        public ActionResult Online()
+        {
+            return View();
+        }
+
+        public ActionResult GiftCard()
+        {
+            return View();
+        }
+
+        public ActionResult Recruitment()
+        {
+            return View();
+        }
+
+        public ActionResult Advertising()
+        {
+            return View();
+        }
+
+        public ActionResult Terms()
+        {
+            return View();
+        }
+
+        public ActionResult Transaction()
+        {
+            return View();
+        }
+
+        public ActionResult Payment()
+        {
+            return View();
+        }
+
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
+        public ActionResult Rules()
+        {
+            return View();
+        }
     }
 }

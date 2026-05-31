@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,10 +235,20 @@
     <Content Include="Views\Movies\Search.cshtml" />
     <Content Include="Views\Movies\Showtimes.cshtml" />
     <Content Include="Views\Showtimes\Index.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\Home\Transaction.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\Rules.cshtml" />
+    <Content Include="Views\Home\Online.cshtml" />
+    <Content Include="Views\Home\GiftCard.cshtml" />
+    <Content Include="Views\Home\Recruitment.cshtml" />
+    <Content Include="Views\Home\Advertising.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Info\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
