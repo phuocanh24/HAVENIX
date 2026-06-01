@@ -115,11 +115,12 @@ form.d-flex {
         transform: translateY(-2px);
     }
 
-/* BANNER */
+/* BANNER CHÍNH */
 .banner-slide {
-    margin-top: 20px;
+    margin: 20px auto 0;
     border-radius: 18px;
     overflow: hidden;
+    max-width: calc(100% - 360px);
 }
 
     .banner-slide img {
@@ -139,6 +140,7 @@ form.d-flex {
     display: flex;
     gap: 14px;
     margin-bottom: 30px;
+    padding-left: 180px;
 }
 
     .movie-tabs .tab-btn {
@@ -168,12 +170,14 @@ form.d-flex {
 
 .movie-track {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(4, 190px);
+    justify-content: center;
+    gap: 20px;
 }
 
 .movie-card {
-    width: 100%;
+    width: 190px;
+    height: 410px;
     background: #a94343;
     overflow: hidden;
     border-radius: 20px;
@@ -181,7 +185,6 @@ form.d-flex {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     box-shadow: 0 8px 22px rgba(0,0,0,0.3);
     transition: 0.3s;
 }
@@ -193,7 +196,7 @@ form.d-flex {
 
     .movie-card img {
         width: 100%;
-        height: 340px;
+        height: 320px;
         object-fit: cover;
         display: block;
         transition: 0.3s;
@@ -205,30 +208,31 @@ form.d-flex {
     }
 
 .movie-info {
-    padding: 14px;
+    height: 90px;
+    padding: 12px;
     text-align: center;
     background: #a94343;
-    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
     .movie-info h3 {
-        color: white;
-        font-size: 20px;
         margin: 0;
-        font-weight: bold;
+        font-size: 18px;
     }
 
 /* FOOTER SECTION */
 .hx-info-section {
     background: #d9d6cc;
     width: 100%;
-    padding: 45px 40px;
+    padding: 45px 150px;
     margin-top: 60px;
     border-top: 4px solid black;
 }
 
 .hx-info-content {
-    max-width: 1300px;
+    max-width: 1100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -732,5 +736,53 @@ footer {
 
     .about-banner {
         height: 260px;
+    }
+}
+
+/* =========================
+   HAVENIX SIDE BANNER
+========================= */
+
+.hx-side-banner {
+    position: fixed;
+    top: 100px;
+    width: 180px;
+    height: 600px;
+    z-index: 9999;
+}
+
+.hx-banner-left {
+    left: 0;
+}
+
+.hx-banner-right {
+    right: 0;
+}
+
+.hx-side-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+
+/* RESPONSIVE BANNER */
+@media (max-width: 1500px) {
+
+    .hx-side-banner {
+        display: none;
+    }
+
+    .banner-slide {
+        max-width: 100%;
+    }
+
+    .movie-section {
+        padding: 50px 20px;
+    }
+
+    .container.body-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 }
