@@ -875,3 +875,146 @@ footer {
         width: 100%;
     }
 }
+
+
+/* POPUP HAVENIX */
+.promo-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: none;
+}
+
+.promo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.8);
+}
+
+.promo-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+    .promo-content img {
+        width: 850px;
+        max-width: 90vw;
+        border-radius: 15px;
+        box-shadow: 0 0 40px rgba(0,0,0,.6);
+    }
+
+.promo-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    font-size: 22px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* TOP ADS HOME GIỐNG CGV */
+.hx-top-ad {
+    width: calc(100% - 420px);
+    margin: 0 auto;
+    text-align: center;
+    background: #fff7e6;
+}
+
+    .hx-top-ad img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        display: block;
+    }
+
+.hx-mini-menu {
+    width: 100%;
+    height: 36px;
+    background: #fff7e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+    .hx-mini-menu a {
+        color: #333 !important;
+        text-decoration: none !important;
+    }
+
+    .hx-mini-menu span {
+        background: #d71920;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+.hx-film-line {
+    width: 1250px; /* bằng banner */
+    max-width: 100%;
+    margin: 0 auto;
+
+    height: 12px;
+
+    background: repeating-linear-gradient(
+        90deg,
+        #d71920 0 18px,
+        #fff 18px 24px
+    );
+
+    border-top: 3px solid #d71920;
+    border-bottom: 3px solid #d71920;
+}
+
+
+
+
+.hx-social {
+    display: flex;
+    gap: 12px;
+}
+
+    .hx-social a {
+        text-decoration: none;
+    }
+
+    .hx-social span {
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    /* Facebook */
+    .hx-social a:nth-child(1) span {
+        background: #1877F2;
+    }
+
+    /* Instagram */
+    .hx-social a:nth-child(2) span {
+        background: linear-gradient( 45deg, #f58529, #dd2a7b, #8134af, #515bd4 );
+    }
+
+    /* Zalo */
+    .hx-social a:nth-child(3) span {
+        background: #0068ff;
+        font-size: 20px;
+    }

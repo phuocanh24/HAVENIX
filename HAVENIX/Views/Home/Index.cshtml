@@ -2,6 +2,13 @@
     ViewBag.Title = "Havenix Cinema";
 }
 
+<!-- TOP ADS GIỐNG CGV -->
+<div class="hx-top-ad">
+    <img src="@Url.Content("~/Content/Img/zalopay.jpg")" alt="Havenix ưu đãi">
+</div>
+
+<div class="hx-film-line"></div>
+
 <div class="hx-side-banner hx-banner-left">
     <img src="@Url.Content("~/Content/Img/anhben.jpg")"
          alt="Havenix Member Day">
@@ -231,6 +238,22 @@
     }
 </script>
 
+<script>
+    function closePopup() {
+        document.getElementById("promoPopup").style.display = "none";
+    }
+
+    window.onload = function () {
+
+        if (!sessionStorage.getItem("havenix_popup")) {
+
+            document.getElementById("promoPopup").style.display = "block";
+
+            sessionStorage.setItem("havenix_popup", "shown");
+        }
+    };
+</script>
+
 <!-- INFO -->
 <section class="hx-info-section">
     <div class="hx-info-content">
@@ -287,10 +310,19 @@
             <h4>Kết nối với chúng tôi</h4>
 
             <div class="hx-social">
-                <span>f</span>
-                <span>▶</span>
-                <span>◎</span>
-                <span>Zalo</span>
+
+                <a href="https://www.facebook.com/phuoc.anhh/?viewas=100000686899395" target="_blank">
+                    <span>f</span>
+                </a>
+
+                <a href="https://www.instagram.com/phc_hna/" target="_blank">
+                    <span>◎</span>
+                </a>
+
+                <a href="https://zalo.me/0899005430" target="_blank">
+                    <span>Zalo</span>
+                </a>
+
             </div>
 
             <div class="hx-notify">
