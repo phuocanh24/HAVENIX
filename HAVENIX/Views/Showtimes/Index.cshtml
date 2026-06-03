@@ -1,26 +1,41 @@
 ﻿@model IEnumerable<havenix.Models.Showtime>
 
 @{
+    ViewBag.Title = "Lịch chiếu";
+
     var byDate = Model
         .GroupBy(x => x.StartTime.Date)
         .OrderBy(x => x.Key)
         .ToList();
 }
 
-<div class="showtime-container">
+<div class="showtime-page">
 
-    <h2>Lịch chiếu</h2>
+    <div class="showtime-header">
+
+        <h1>LỊCH CHIẾU PHIM</h1>
+
+        <p>
+            Chọn ngày và suất chiếu phù hợp để đặt vé nhanh chóng.
+        </p>
+
+    </div>
 
     <div class="date-tabs">
+
         @foreach (var day in byDate)
         {
             <button type="button"
                     class="tab-btn"
                     data-day="@day.Key.ToString("yyyy-MM-dd")"
                     onclick="showDay(this)">
-                @day.Key.ToString("dd/MM")
+
+                <span>@day.Key.ToString("dd/MM")</span>
+                <small>@day.Key.ToString("dddd")</small>
+
             </button>
         }
+
     </div>
 
     @foreach (var day in byDate)
@@ -28,8 +43,6 @@
         <div class="time-group"
              data-day="@day.Key.ToString("yyyy-MM-dd")"
              style="display:none">
-
-            <h3>@day.Key.ToString("dddd - dd/MM")</h3>
 
             @{
                 var byMovie = day.GroupBy(x => x.Movie).ToList();
@@ -39,21 +52,51 @@
             {
                 <div class="schedule-card">
 
-                    <a href="/Movies/Details/@movieGroup.Key.Id">
-                        <img src="@movieGroup.Key.Image" class="schedule-img" />
-                    </a>
+                    <div class="schedule-left">
+
+                        <a href="@Url.Action("Details","Movies",
+                           new { id = movieGroup.Key.Id })">
+
+                            <img src="@Url.Content(movieGroup.Key.Image)"
+                                 class="schedule-img" />
+
+                        </a>
+
+                    </div>
 
                     <div class="schedule-info">
-                        <h4>@movieGroup.Key.Name</h4>
+
+                        <h3>@movieGroup.Key.Name</h3>
+
+                        <div class="schedule-meta">
+
+                            <span>@movieGroup.Key.Genre</span>
+
+                            <span>@movieGroup.Key.Duration</span>
+
+                        </div>
 
                         <div class="time-list">
-                            @foreach (var item in movieGroup)
+
+                            @foreach (var item in movieGroup.OrderBy(x => x.StartTime))
                             {
-                                <a href="/Movies/Details/@item.MovieId" class="time-btn">
-                                    @item.StartTime.ToString("HH:mm") | @item.Room
+                                <a href="@Url.Action("Create","Booking",
+                                   new { showtimeId = item.Id })"
+                                   class="time-btn">
+
+                                    <strong>
+                                        @item.StartTime.ToString("HH:mm")
+                                    </strong>
+
+                                    <small>
+                                        @item.Room
+                                    </small>
+
                                 </a>
                             }
+
                         </div>
+
                     </div>
 
                 </div>
@@ -66,22 +109,32 @@
 
 <script>
     function showDay(btn) {
+
         let day = btn.getAttribute("data-day");
 
         document.querySelectorAll(".date-tabs .tab-btn")
-            .forEach(b => b.classList.remove("active"));
+            .forEach(x => x.classList.remove("active"));
 
         btn.classList.add("active");
 
         document.querySelectorAll(".time-group")
             .forEach(x => x.style.display = "none");
 
-        let target = document.querySelector(".time-group[data-day='" + day + "']");
-        if (target) target.style.display = "block";
+        let target = document.querySelector(
+            ".time-group[data-day='" + day + "']"
+        );
+
+        if (target)
+            target.style.display = "block";
     }
 
-    window.onload = function () {
-        let first = document.querySelector(".date-tabs .tab-btn");
-        if (first) first.click();
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+
+        let first =
+            document.querySelector(".date-tabs .tab-btn");
+
+        if (first)
+            first.click();
+
+    });
 </script>

@@ -1,88 +1,77 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - HAVENIX Cinema</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/Site.css?v=9999" rel="stylesheet" />
+    <link href="/Content/Site.css?v=10000" rel="stylesheet" />
 </head>
+
 <body>
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
-
         <div class="container">
 
-            <!-- LOGO -->
             <a class="navbar-brand" href="/">
                 HAVENIX
             </a>
 
-            <!-- MOBILE BUTTON -->
             <button class="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#mainMenu">
-
                 <span class="navbar-toggler-icon"></span>
-
             </button>
 
-            <!-- MENU -->
             <div class="collapse navbar-collapse" id="mainMenu">
 
-                <ul class="navbar-nav mx-auto">
-
+                <ul class="navbar-nav mx-auto main-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Movies">
+                        <a class="nav-link @(Request.Path.StartsWith("/Movies") ? "active" : "")" href="/Movies">
                             Phim
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/Showtimes">
+                        <a class="nav-link @(Request.Path.StartsWith("/Showtimes") ? "active" : "")" href="/Showtimes">
                             Lịch chiếu
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/News">
+                        <a class="nav-link @(Request.Path.StartsWith("/News") ? "active" : "")" href="/News">
                             Tin tức
                         </a>
                     </li>
-
                 </ul>
 
-                <!-- SEARCH -->
-                <form class="d-flex me-3"
+                <form class="nav-search"
                       method="get"
                       action="/Movies/Search">
 
-                    <input class="form-control me-2"
+                    <input class="form-control"
                            type="text"
                            name="keyword"
-                           placeholder="Tìm phim...">
+                           placeholder="Tìm phim..." />
 
                     <button class="btn btn-warning"
                             type="submit">
-
                         Tìm
-
                     </button>
-
                 </form>
 
-                <!-- ACCOUNT -->
-                <ul class="navbar-nav">
-
+                <ul class="navbar-nav account-menu">
                     @if (Session["User"] == null)
                     {
                         <li class="nav-item">
@@ -92,7 +81,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/Account/Register">
+                            <a class="nav-link register-link" href="/Account/Register">
                                 Đăng ký
                             </a>
                         </li>
@@ -100,37 +89,77 @@
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="/Account/Profile">
+                            <a class="nav-link user-link" href="/Account/Profile">
                                 @Session["User"]
                             </a>
                         </li>
                     }
-
                 </ul>
 
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <h4>HAVENIX CINEMA</h4>
+                <p>Hệ thống đặt vé xem phim online hiện đại, nhanh chóng và tiện lợi.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>Hotline: 1900 1234</p>
+                <p>Email: support@havenix.vn</p>
+                <p>Địa chỉ: TP. Hồ Chí Minh</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Chính sách</h4>
+                <a href="/Home/About">Giới thiệu</a>
+                <a href="/Home/Terms">Điều khoản chung</a>
+                <a href="/Home/Privacy">Chính sách bảo mật</a>
+                <a href="/Home/Payment">Chính sách thanh toán</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Mạng xã hội</h4>
+
+                <div class="hx-social">
+
+                    <a href="https://www.facebook.com/phuoc.anhh/?viewas=100000686899395"
+                       target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/phc_hna/"
+                       target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="https://zalo.me/0899005430"
+                       target="_blank">
+                        <img src="@Url.Content("~/Content/Img/zalo.png")" alt="Zalo">
+                    </a>
+
+                </div>
             </div>
 
         </div>
 
-    </nav>
-
-    <!-- CONTENT -->
-    <div class="container">
-        @RenderBody()
-    </div>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <p>
-            2026 © HAVENIX CINEMA. All rights reserved - Design by HAVENIX
-        </p>
-
+        <div class="footer-bottom">
+            2026 © HAVENIX CINEMA. All rights reserved.
+        </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

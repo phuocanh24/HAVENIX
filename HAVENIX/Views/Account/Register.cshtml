@@ -1,74 +1,89 @@
-﻿﻿@model havenix.Models.User
+﻿@model havenix.Models.User
 
-<div class="auth-box">
+<div class="auth-page">
+    <div class="auth-card register-card">
 
-    <h2>Đăng ký</h2>
+        <h2>Đăng ký</h2>
+        <p class="auth-subtitle">Tạo tài khoản để đặt vé nhanh hơn</p>
 
-    @using (Html.BeginForm())
-    {
-        <input name="FullName"
-               placeholder="Họ và tên"
-               class="form-control" />
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <label>Họ và tên</label>
+                <input name="FullName" placeholder="Nhập họ và tên" class="form-control" />
+            </div>
 
-        <input name="Email"
-               placeholder="Email"
-               class="form-control" />
+            <div class="form-group">
+                <label>Email</label>
+                <input name="Email" type="email" placeholder="Nhập email" class="form-control" />
+            </div>
 
-        <input name="Phone"
-               placeholder="Số điện thoại"
-               class="form-control" />
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                <input name="Phone" placeholder="Nhập số điện thoại" class="form-control" />
+            </div>
 
-        <select name="Gender"
-                class="form-control">
-            <option>Nam</option>
-            <option>Nữ</option>
-            <option>Khác</option>
-        </select>
+            <div class="form-group">
+                <label>Giới tính</label>
+                <select name="Gender" class="form-control">
+                    <option value="">-- Chọn giới tính --</option>
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                    <option>Khác</option>
+                </select>
+            </div>
 
-        <input type="text"
-               name="BirthDate"
-               class="form-control"
-               placeholder="dd/mm/yyyy"
-               oninput="formatDate(this)" />
+            <div class="form-group">
+                <label>Ngày sinh</label>
+                <input type="text"
+                       name="BirthDate"
+                       class="form-control"
+                       placeholder="dd/mm/yyyy"
+                       maxlength="10"
+                       oninput="formatDate(this)" />
+            </div>
 
-        <input type="password"
-               name="Password"
-               placeholder="Mật khẩu"
-               class="form-control" />
+            <div class="form-group">
+                <label>Mật khẩu</label>
+                <input type="password" name="Password" placeholder="Nhập mật khẩu" class="form-control" />
+            </div>
 
-        <input type="password"
-               name="confirmPassword"
-               placeholder="Nhập lại mật khẩu"
-               class="form-control" />
+            <div class="form-group">
+                <label>Nhập lại mật khẩu</label>
+                <input type="password" name="confirmPassword" placeholder="Nhập lại mật khẩu" class="form-control" />
+            </div>
 
-        <button type="submit"
-                class="btn btn-warning">
-            Đăng ký
-        </button>
+            if (ViewBag.Error != null)
+            {
+                <div class="auth-error">@ViewBag.Error</div>
+            }
 
-        <p style="color:red; margin-top:10px;">
-            @ViewBag.Error
-        </p>
+            <button type="submit" class="btn btn-warning auth-btn">
+                Đăng ký
+            </button>
 
-        <div class="auth-links">
-            <a href="/Account/Login">
-                Đã có tài khoản? Đăng nhập
-            </a>
-        </div>
-    }
+            <div class="auth-bottom">
+                Đã có tài khoản?
+                <a href="/Account/Login">Đăng nhập</a>
+            </div>
+        }
 
+    </div>
 </div>
 
 <script>
     function formatDate(input) {
-
         let value = input.value.replace(/\D/g, '');
 
-        if (value.length > 2 && value.length <= 4)
-            value = value.slice(0, 2) + '/' + value.slice(2);
+        if (value.length > 8) {
+            value = value.slice(0, 8);
+        }
 
-        else if (value.length > 4)
-            value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4, 8);
+        if (value.length >= 5) {
+            value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4);
+        } else if (value.length >= 3) {
+            value = value.slice(0, 2) + '/' + value.slice(2);
+        }
 
         input.value = value;
     }

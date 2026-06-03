@@ -6,7 +6,15 @@
 
 <div class="movies-page">
 
-    <h2>DANH SÁCH PHIM</h2>
+    <div class="movies-header">
+
+        <h2>DANH SÁCH PHIM</h2>
+
+        <p>
+            Khám phá những bộ phim hấp dẫn đang chiếu và sắp chiếu tại HAVENIX.
+        </p>
+
+    </div>
 
     <div class="movies-grid">
 
@@ -14,24 +22,56 @@
         {
             <div class="movies-card">
 
-                <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
-                   class="movies-link">
+                <div class="movie-poster">
 
-                    <img src="@Url.Content(item.Image)" alt="@item.Name" />
+                    <img src="@Url.Content(item.Image)"
+                         alt="@item.Name" />
 
-                    <div class="movies-info">
-                        <h3>@item.Name</h3>
-                        <p><b>Thể loại:</b> @item.Genre</p>
-                        <p><b>Thời lượng:</b> @item.Duration</p>
-                        <p><b>Ngày chiếu:</b> @item.ReleaseDate</p>
-                    </div>
+                    <span class="movie-status">
+                        @(string.IsNullOrEmpty(item.Status)
+                            ? "Đang chiếu"
+                            : item.Status)
+                    </span>
 
-                </a>
+                </div>
 
-                <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
-                   class="movies-btn">
-                    Xem lịch chiếu
-                </a>
+                <div class="movies-info">
+
+                    <h3>@item.Name</h3>
+
+                    <p>
+                        <b>Thể loại:</b> @item.Genre
+                    </p>
+
+                    <p>
+                        <b>Thời lượng:</b> @item.Duration
+                    </p>
+
+                    <p>
+                        <b>Khởi chiếu:</b> @item.ReleaseDate
+                    </p>
+
+                </div>
+
+                <div class="movies-actions">
+
+                    <a href="@Url.Action("Details","Movies",
+                       new { id = item.Id })"
+                       class="btn-detail">
+
+                        Xem chi tiết
+
+                    </a>
+
+                    <a href="@Url.Action("Showtimes","Movies",
+                       new { id = item.Id })"
+                       class="btn-book">
+
+                        Đặt vé
+
+                    </a>
+
+                </div>
 
             </div>
         }

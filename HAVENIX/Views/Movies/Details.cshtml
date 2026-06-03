@@ -1,179 +1,112 @@
 ﻿@model havenix.Models.Movie
 
 @{
+    ViewBag.Title = Model.Name;
+
     var grouped = Model.Showtimes
         .GroupBy(x => x.StartTime.Date)
         .OrderBy(x => x.Key)
         .ToList();
 }
 
-<div class="movie-detail-box compact-detail">
+<div class="movie-detail-box">
 
     <div class="detail-poster">
-        <img class="poster-small" src="@Url.Content(Model.Image)" alt="@Model.Name" />
+        <img src="@Url.Content(Model.Image)" alt="@Model.Name" />
     </div>
 
     <div class="detail-info">
+
+        <span class="detail-badge">Đang chiếu</span>
+
         <h1>@Model.Name</h1>
+
+        <div class="detail-meta">
+            <span>@Model.Genre</span>
+            <span>@Model.Duration</span>
+            <span>@Model.Language</span>
+        </div>
+
         <hr />
 
-        <p>
-            <b>Đạo diễn:</b>
+        <div class="detail-section">
+            <h3>Thông tin phim</h3>
 
-            @switch (Model.Name)
-            {
-                case "MAI":
-                    @:Trấn Thành
-                    break;
+            <p><b>Đạo diễn:</b> Đang cập nhật</p>
+            <p><b>Diễn viên:</b> Đang cập nhật</p>
+            <p><b>Thể loại:</b> @Model.Genre</p>
+            <p><b>Thời lượng:</b> @Model.Duration</p>
+            <p><b>Ngôn ngữ:</b> @Model.Language</p>
+        </div>
 
-                case "BỐ GIÀ":
-                    @:Trấn Thành, Vũ Ngọc Đãng
-                    break;
+        <div class="detail-section">
+            <h3>Độ tuổi</h3>
+            <p>
+                <b>Rated:</b>
+                T18 - Phim được phổ biến đến người xem từ đủ 18 tuổi trở lên.
+            </p>
+        </div>
 
-                case "Nhà Bà Nữ":
-                    @:Trấn Thành
-                    break;
+        <div class="detail-section">
+            <h3>Nội dung phim</h3>
+            <p>@Model.Description</p>
+        </div>
 
-                case "LẬT MẶT 7: MỘT ĐIỀU ƯỚC":
-                    @:Lý Hải
-                    break;
+        <a href="#showtimeBox" class="btn btn-warning detail-book-btn">
+            Đặt vé ngay
+        </a>
 
-                case "DORAEMON: KHÁM PHÁ ĐÁY ĐẠI DƯƠNG":
-                    @:Imai Kazuaki
-                    break;
-
-                case "THANH GƯƠM DIỆT QUỶ: VÔ HẠN THÀNH":
-                    @:Haruo Sotozaki
-                    break;
-
-                case "ATTACK ON TITAN 4":
-                    @:Yuichiro Hayashi
-                    break;
-
-                case "SIÊU LỪA GẶP SIÊU LẦY":
-                    @:Võ Thanh Hòa
-                    break;
-
-                case "THÁM TỬ KIÊN: KỲ ÁN KHÔNG ĐẦU":
-                    @:Victor Vũ
-                    break;
-
-                case "LẬT MẶT 8: VÒNG TAY NẮNG":
-                    @:Lý Hải
-                    break;
-
-                default:
-                    @:Đang cập nhật
-                    break;
-            }
-        </p>
-
-        <p>
-            <b>Diễn viên:</b>
-
-            @switch (Model.Name)
-            {
-                case "MAI":
-                    @:Phương Anh Đào, Tuấn Trần, Trấn Thành, Hồng Đào, Uyển Ân
-                    break;
-
-                case "BỐ GIÀ":
-                    @:Trấn Thành, Tuấn Trần, Lê Giang, Lan Phương
-                    break;
-
-                case "Nhà Bà Nữ":
-                    @:Trấn Thành, Lê Giang, Uyển Ân, Song Luân, Khả Như
-                    break;
-
-                case "LẬT MẶT 7: MỘT ĐIỀU ƯỚC":
-                    @:Thanh Hiền, Đinh Y Nhung, Quách Ngọc Tuyên
-                    break;
-
-                case "DORAEMON: KHÁM PHÁ ĐÁY ĐẠI DƯƠNG":
-                    @:Doraemon, Nobita, Shizuka, Jaian, Suneo
-                    break;
-
-                case "THANH GƯƠM DIỆT QUỶ: VÔ HẠN THÀNH":
-                    @:Natsuki Hanae, Akari Kito, Yoshitsugu Matsuoka
-                    break;
-
-                case "ATTACK ON TITAN 4":
-                    @:Yuki Kaji, Marina Inoue, Hiroshi Kamiya
-                    break;
-
-                case "SIÊU LỪA GẶP SIÊU LẦY":
-                    @:Anh Tú, Mạc Văn Khoa, Thu Trang
-                    break;
-
-                case "THÁM TỬ KIÊN: KỲ ÁN KHÔNG ĐẦU":
-                    @:Quốc Huy, Đinh Ngọc Diệp, NSƯT Mỹ Uyên
-                    break;
-
-                default:
-                    @:Đang cập nhật
-                    break;
-            }
-        </p>
-
-        <p><b>Thể loại:</b> @Model.Genre</p>
-        <p><b>Thời lượng:</b> @Model.Duration</p>
-        <p><b>Ngôn ngữ:</b> @Model.Language</p>
-
-        <p>
-            <b>Rated:</b>
-            T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)
-        </p>
-
-        <p><b>Mô tả:</b> @Model.Description</p>
     </div>
 
 </div>
 
-<div class="showtime-container">
+<div id="showtimeBox" class="showtime-container movie-showtime-box">
 
-    <h2>CHỌN NGÀY CHIẾU</h2>
+    <h2>CHỌN LỊCH CHIẾU</h2>
 
-    <div class="date-tabs">
-        @foreach (var day in grouped)
-        {
-            <button type="button"
-                    class="tab-btn"
-                    data-day="@day.Key.ToString("yyyy-MM-dd")"
-                    onclick="showDay(this)">
-                @day.Key.ToString("dd/MM")
-            </button>
-        }
-    </div>
+    @if (!grouped.Any())
+    {
+        <div class="empty-showtime">
+            Hiện chưa có lịch chiếu cho phim này.
+        </div>
+    }
+    else
+    {
+        <div class="date-tabs">
+            @foreach (var day in grouped)
+            {
+                <button type="button"
+                        class="tab-btn"
+                        data-day="@day.Key.ToString("yyyy-MM-dd")"
+                        onclick="showDay(this)">
+                    <span>@day.Key.ToString("dd/MM")</span>
+                    <small>@day.Key.ToString("dddd")</small>
+                </button>
+            }
+        </div>
 
-    <div class="time-content">
-        @foreach (var day in grouped)
-        {
-            <div class="time-group"
-                 data-day="@day.Key.ToString("yyyy-MM-dd")"
-                 style="display:none">
+        <div class="time-content">
+            @foreach (var day in grouped)
+            {
+                <div class="time-group"
+                     data-day="@day.Key.ToString("yyyy-MM-dd")"
+                     style="display:none">
 
-                <h3>@day.Key.ToString("dddd - dd/MM")</h3>
+                    <h3>@day.Key.ToString("dddd - dd/MM/yyyy")</h3>
 
-                <div class="time-list">
-                    @foreach (var item in day)
-                    {
-                        <button type="button"
-                                class="time-btn"
-                                onclick="showBooking(this, @item.Id)">
-                            @item.StartTime.ToString("HH:mm")
-                        </button>
-                    }
+                    <div class="time-list">
+                        @foreach (var item in day.OrderBy(x => x.StartTime))
+                        {
+                            <a href="@Url.Action("Create", "Booking", new { showtimeId = item.Id })"
+                               class="time-btn">
+                                @item.StartTime.ToString("HH:mm")
+                            </a>
+                        }
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-
-    <a id="bookingBtn"
-       href="#"
-       class="btn btn-warning"
-       style="display:none; margin-top:20px;">
-        Đặt vé phim
-    </a>
+            }
+        </div>
+    }
 
 </div>
 
@@ -189,33 +122,16 @@
         document.querySelectorAll(".time-group")
             .forEach(x => x.style.display = "none");
 
-        document.querySelectorAll(".time-btn").forEach(x => {
-            x.style.background = "white";
-            x.style.color = "#5b0b0b";
-        });
-
         let target = document.querySelector(".time-group[data-day='" + day + "']");
-        if (target) target.style.display = "block";
-
-        document.getElementById("bookingBtn").style.display = "none";
+        if (target) {
+            target.style.display = "block";
+        }
     }
 
-    function showBooking(btn, id) {
-        document.querySelectorAll(".time-btn").forEach(x => {
-            x.style.background = "#0b1220";
-            x.style.color = "white";
-        });
-
-        btn.style.background = "#facc15";
-        btn.style.color = "black";
-
-        let booking = document.getElementById("bookingBtn");
-        booking.style.display = "inline-block";
-        booking.href = "/Booking/Create?showtimeId=" + id;
-    }
-
-    window.onload = function () {
+    document.addEventListener("DOMContentLoaded", function () {
         let first = document.querySelector(".date-tabs .tab-btn");
-        if (first) first.click();
-    }
+        if (first) {
+            first.click();
+        }
+    });
 </script>

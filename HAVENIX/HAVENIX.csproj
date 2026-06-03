@@ -147,6 +147,10 @@
     <Compile Include="Migrations\202605271504286_FixMovieImages.Designer.cs">
       <DependentUpon>202605271504286_FixMovieImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202606031249312_AddMovieStatus.cs" />
+    <Compile Include="Migrations\202606031249312_AddMovieStatus.Designer.cs">
+      <DependentUpon>202606031249312_AddMovieStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HavenixDbContext.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -289,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202605271504286_FixMovieImages.resx">
       <DependentUpon>202605271504286_FixMovieImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202606031249312_AddMovieStatus.resx">
+      <DependentUpon>202606031249312_AddMovieStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
