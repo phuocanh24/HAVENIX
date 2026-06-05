@@ -1,5 +1,31 @@
-﻿@{
+﻿@model IEnumerable<havenix.Models.Movie>
+
+@{
     ViewBag.Title = "Havenix Cinema";
+
+    var movies = Model == null
+        ? new List<havenix.Models.Movie>()
+        : Model.ToList();
+
+    var dangChieu = movies
+        .Where(x => x.Status == "Đang chiếu")
+        .Take(4)
+        .ToList();
+
+    var sapChieu = movies
+        .Where(x => x.Status == "Sắp chiếu")
+        .Take(4)
+        .ToList();
+
+    if (!dangChieu.Any())
+    {
+        dangChieu = movies.Take(4).ToList();
+    }
+
+    if (!sapChieu.Any())
+    {
+        sapChieu = movies.Skip(4).Take(4).ToList();
+    }
 }
 
 <div class="hx-top-ad">
@@ -81,57 +107,45 @@
     <div id="dangchieu" class="movie-content active">
         <div class="movie-track">
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 152 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/bogiaposter.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Bố Già</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 152 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 152 })">Đặt vé</a>
-                    </div>
-                </div>
-            </div>
+            @foreach (var movie in dangChieu)
+            {
+                <div class="movie-card">
+                    <a href="@Url.Action("Details","Movies", new { id = movie.Id })" class="movie-img-link">
+                        <img src="@Url.Content(movie.Image)" alt="@movie.Name" />
+                    </a>
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 153 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/nhabanuposter.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Nhà Bà Nữ</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 153 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 153 })">Đặt vé</a>
-                    </div>
-                </div>
-            </div>
+                    <div class="movie-info">
+                        <h3>@movie.Name</h3>
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 155 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/doraemonposter.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Doraemon</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 155 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 155 })">Đặt vé</a>
-                    </div>
-                </div>
-            </div>
+                        <div class="movie-actions">
+                            <a href="@Url.Action("Details","Movies", new { id = movie.Id })">
+                                Xem chi tiết
+                            </a>
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 151 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/maipos.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Mai</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 151 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 151 })">Đặt vé</a>
+                            @{
+                                var firstShowtime = movie.Showtimes?
+                                    .OrderBy(x => x.StartTime)
+                                    .FirstOrDefault();
+                            }
+
+                            @if (firstShowtime != null)
+                            {
+                                <a href="@Url.Action("Create","Booking",
+                                    new { showtimeId = firstShowtime.Id })">
+                                    Đặt vé
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details","Movies",
+                                    new { id = movie.Id })">
+                                    Chưa có suất
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
 
         </div>
     </div>
@@ -139,57 +153,45 @@
     <div id="sapchieu" class="movie-content">
         <div class="movie-track">
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 159 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/thamtukienposter.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Thám Tử Kiên</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 159 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 159 })">Đặt vé</a>
-                    </div>
-                </div>
-            </div>
+            @foreach (var movie in sapChieu)
+            {
+                <div class="movie-card">
+                    <a href="@Url.Action("Details","Movies", new { id = movie.Id })" class="movie-img-link">
+                        <img src="@Url.Content(movie.Image)" alt="@movie.Name" />
+                    </a>
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 162 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/thooiposter.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Thỏ Ơi</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 162 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 162 })">Đặt vé</a>
-                    </div>
-                </div>
-            </div>
+                    <div class="movie-info">
+                        <h3>@movie.Name</h3>
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 158 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/sieuluaposter.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Siêu Lừa Gặp Siêu Lầy</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 158 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 158 })">Đặt vé</a>
-                    </div>
-                </div>
-            </div>
+                        <div class="movie-actions">
+                            <a href="@Url.Action("Details","Movies", new { id = movie.Id })">
+                                Xem chi tiết
+                            </a>
 
-            <div class="movie-card">
-                <a href="@Url.Action("Details","Movies", new { id = 160 })" class="movie-img-link">
-                    <img src="@Url.Content("~/Content/Img/latmat8poster.jpg")" />
-                </a>
-                <div class="movie-info">
-                    <h3>Lật Mặt 8</h3>
-                    <div class="movie-actions">
-                        <a href="@Url.Action("Details","Movies", new { id = 160 })">Xem chi tiết</a>
-                        <a href="@Url.Action("Showtimes","Movies", new { id = 160 })">Đặt vé</a>
+                            @{
+                                var firstShowtime = movie.Showtimes?
+                                    .OrderBy(x => x.StartTime)
+                                    .FirstOrDefault();
+                            }
+
+                            @if (firstShowtime != null)
+                            {
+                                <a href="@Url.Action("Create","Booking",
+                                new { showtimeId = firstShowtime.Id })">
+                                    Đặt vé
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details","Movies",
+                                new { id = movie.Id })">
+                                    Chưa có suất
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
 
         </div>
     </div>

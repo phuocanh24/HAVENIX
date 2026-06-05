@@ -1,0 +1,114 @@
+﻿@model havenix.Models.Showtime
+
+@{
+    ViewBag.Title = "Đặt vé phim";
+}
+
+<div class="booking-page">
+
+    <div class="booking-card">
+
+        <div class="booking-poster">
+            <img src="@Url.Content(Model.Movie.Image)" alt="@Model.Movie.Name" />
+        </div>
+
+        <div class="booking-info">
+
+            <h1>@Model.Movie.Name</h1>
+
+            <div class="booking-detail-grid">
+                <p><b>Thể loại:</b> @Model.Movie.Genre</p>
+                <p><b>Thời lượng:</b> @Model.Movie.Duration</p>
+                <p><b>Ngôn ngữ:</b> @Model.Movie.Language</p>
+                <p><b>Ngày chiếu:</b> @Model.StartTime.ToString("dd/MM/yyyy")</p>
+                <p><b>Giờ chiếu:</b> @Model.StartTime.ToString("HH:mm")</p>
+                <p><b>Phòng:</b> @Model.Room</p>
+            </div>
+
+            <hr />
+
+            <h3>Chọn ghế</h3>
+
+            <div class="screen">MÀN HÌNH</div>
+
+            <div class="seat-map">
+
+                @for (char row = 'A'; row <= 'H'; row++)
+                {
+                    <div class="seat-row">
+                        @for (int col = 1; col <= 10; col++)
+                        {
+                            <button type="button"
+                                    class="seat"
+                                    onclick="selectSeat(this)">
+                                @row@col
+                            </button>
+                        }
+                    </div>
+                }
+
+                <!-- GHẾ ĐÔI -->
+            <div class="couple-row">
+                @for (int col = 1; col <= 6; col++)
+                {
+                    <button type="button"
+                            class="seat couple-seat"
+                            onclick="selectSeat(this)">
+                        @($"I{col}")
+                    </button>
+                }
+            </div>
+
+            </div>
+
+            <div class="booking-summary">
+                <p><b>Ghế đã chọn:</b> <span id="selectedSeats">Chưa chọn</span></p>
+                <p><b>Số lượng:</b> <span id="seatCount">0</span></p>
+                <p><b>Tổng tiền:</b> <span id="totalPrice">0đ</span></p>
+            </div>
+
+            <button type="button"
+                    class="btn btn-warning confirm-booking"
+                    onclick="confirmBooking()">
+                Xác nhận đặt vé
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let selectedSeats = [];
+    let price = 70000;
+
+    function selectSeat(btn) {
+        let seat = btn.innerText.trim();
+
+        if (btn.classList.contains("selected")) {
+            btn.classList.remove("selected");
+            selectedSeats = selectedSeats.filter(x => x !== seat);
+        } else {
+            btn.classList.add("selected");
+            selectedSeats.push(seat);
+        }
+
+        document.getElementById("selectedSeats").innerText =
+            selectedSeats.length > 0 ? selectedSeats.join(", ") : "Chưa chọn";
+
+        document.getElementById("seatCount").innerText = selectedSeats.length;
+
+        document.getElementById("totalPrice").innerText =
+            (selectedSeats.length * price).toLocaleString("vi-VN") + "đ";
+    }
+
+    function confirmBooking() {
+        if (selectedSeats.length === 0) {
+            alert("Vui lòng chọn ghế trước khi đặt vé.");
+            return;
+        }
+
+        alert("Đặt vé thành công! Ghế: " + selectedSeats.join(", "));
+    }
+</script>
