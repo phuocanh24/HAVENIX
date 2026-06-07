@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,6 +7,11 @@ namespace havenix.Models
 {
     public class User
     {
+        public User()
+        {
+            Bookings = new HashSet<Booking>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -33,5 +39,8 @@ namespace havenix.Models
         [Required]
         [StringLength(512)]
         public string PasswordHash { get; set; }
+
+        // Quan hệ 1 User -> nhiều Booking
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

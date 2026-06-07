@@ -133,6 +133,7 @@
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
+    <Compile Include="Filters\LoginAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,9 +142,20 @@
     <Compile Include="Migrations\202606070832525_InitDB.Designer.cs">
       <DependentUpon>202606070832525_InitDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202606071131477_AddBookingSeatTicket.cs" />
+    <Compile Include="Migrations\202606071131477_AddBookingSeatTicket.Designer.cs">
+      <DependentUpon>202606071131477_AddBookingSeatTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202606071140388_AddBookingSeatTicket1.cs" />
+    <Compile Include="Migrations\202606071140388_AddBookingSeatTicket1.Designer.cs">
+      <DependentUpon>202606071140388_AddBookingSeatTicket1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\Showtime.cs" />
+    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -277,6 +289,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202606070832525_InitDB.resx">
       <DependentUpon>202606070832525_InitDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202606071131477_AddBookingSeatTicket.resx">
+      <DependentUpon>202606071131477_AddBookingSeatTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202606071140388_AddBookingSeatTicket1.resx">
+      <DependentUpon>202606071140388_AddBookingSeatTicket1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

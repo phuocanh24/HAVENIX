@@ -12,13 +12,38 @@ namespace HAVENIX.Controllers
         HavenixDbContext db = new HavenixDbContext();
 
         // MOVIES
-        public ActionResult Index()
+        public ActionResult Index(string genre, string status)
         {
             var movies = db.Movies
                 .Include(x => x.Showtimes)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(genre))
+            {
+                movies = movies.Where(x => x.Genre == genre);
+            }
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                movies = movies.Where(x => x.Status == status);
+            }
+
+            ViewBag.SelectedGenre = genre;
+            ViewBag.SelectedStatus = status;
+
+            ViewBag.Genres = db.Movies
+                .Select(x => x.Genre)
+                .Distinct()
+                .OrderBy(x => x)
                 .ToList();
 
-            return View(movies);
+            ViewBag.Statuses = db.Movies
+                .Select(x => x.Status)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
+
+            return View(movies.ToList());
         }
 
         // SEARCH
@@ -31,20 +56,21 @@ namespace HAVENIX.Controllers
 
             keyword = keyword.Trim().ToLower();
 
-            var movie = db.Movies
+            var movies = db.Movies
                 .Include(x => x.Showtimes)
-                .FirstOrDefault(x =>
+                .Where(x =>
                     x.Name.ToLower().Contains(keyword) ||
-                    keyword.Contains(x.Name.ToLower())
-                );
+                    x.Genre.ToLower().Contains(keyword) ||
+                    x.Description.ToLower().Contains(keyword) ||
+                    x.Language.ToLower().Contains(keyword) ||
+                    x.Status.ToLower().Contains(keyword)
+                )
+                .OrderBy(x => x.Name)
+                .ToList();
 
-            if (movie != null)
-            {
-                return RedirectToAction("Details", "Movies", new { id = movie.Id });
-            }
+            ViewBag.Keyword = keyword;
 
-            TempData["Message"] = "Không tìm thấy phim";
-            return RedirectToAction("Index");
+            return View("Index", movies);
         }
 
         // DETAILS

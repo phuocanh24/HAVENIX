@@ -15,6 +15,12 @@ namespace havenix.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Seat> Seats { get; set; }
+
+        public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<Ticket> Tickets { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -49,6 +55,36 @@ namespace havenix.Data
                 .WithMany(x => x.Showtimes)
                 .HasForeignKey(x => x.MovieId)
                 .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Seat>()
+                .HasRequired(x => x.Showtime)
+                .WithMany(x => x.Seats)
+                .HasForeignKey(x => x.ShowtimeId)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Booking>()
+                .HasRequired(x => x.User)
+                .WithMany(x => x.Bookings)
+                .HasForeignKey(x => x.UserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Booking>()
+                .HasRequired(x => x.Showtime)
+                .WithMany(x => x.Bookings)
+                .HasForeignKey(x => x.ShowtimeId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ticket>()
+                .HasRequired(x => x.Booking)
+                .WithMany(x => x.Tickets)
+                .HasForeignKey(x => x.BookingId)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Ticket>()
+                .HasRequired(x => x.Seat)
+                .WithMany()
+                .HasForeignKey(x => x.SeatId)
+                .WillCascadeOnDelete(false);
         }
     }
 }
