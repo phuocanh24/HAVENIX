@@ -29,6 +29,23 @@
 
             <h3>Chọn ghế</h3>
 
+            <div class="seat-status-box">
+                <div class="seat-status-item">
+                    <span class="seat-demo normal"></span>
+                    <b>Ghế trống</b>
+                </div>
+
+                <div class="seat-status-item">
+                    <span class="seat-demo choosing"></span>
+                    <b>Ghế đang chọn</b>
+                </div>
+
+                <div class="seat-status-item">
+                    <span class="seat-demo sold"></span>
+                    <b>Ghế đã đặt</b>
+                </div>
+            </div>
+
             <div class="screen">MÀN HÌNH</div>
 
             <div class="seat-map">
@@ -38,34 +55,52 @@
                     <div class="seat-row">
                         @for (int col = 1; col <= 10; col++)
                         {
+                            var seatName = row.ToString() + col;
+
                             <button type="button"
                                     class="seat"
+                                    data-seat="@seatName"
                                     onclick="selectSeat(this)">
-                                @row@col
+                                @seatName
                             </button>
                         }
                     </div>
                 }
 
-                <!-- GHẾ ĐÔI -->
-            <div class="couple-row">
-                @for (int col = 1; col <= 6; col++)
-                {
-                    <button type="button"
-                            class="seat couple-seat"
-                            onclick="selectSeat(this)">
-                        @($"I{col}")
-                    </button>
-                }
-            </div>
+                <div class="couple-row">
+                    @for (int col = 1; col <= 6; col++)
+                    {
+                        var seatName = "I" + col;
+
+                        <button type="button"
+                                class="seat couple-seat"
+                                data-seat="@seatName"
+                                onclick="selectSeat(this)">
+                            @seatName
+                        </button>
+                    }
+                </div>
 
             </div>
 
             <div class="booking-summary">
-                <p><b>Ghế đã chọn:</b> <span id="selectedSeats">Chưa chọn</span></p>
-                <p><b>Số lượng:</b> <span id="seatCount">0</span></p>
-                <p><b>Tổng tiền:</b> <span id="totalPrice">0đ</span></p>
+                <p>
+                    <b>Ghế đang chọn:</b>
+                    <span id="selectedSeats">Chưa chọn</span>
+                </p>
+
+                <p>
+                    <b>Số lượng:</b>
+                    <span id="seatCount">0</span>
+                </p>
+
+                <p>
+                    <b>Tổng tiền:</b>
+                    <span id="totalPrice">0đ</span>
+                </p>
             </div>
+
+            <input type="hidden" id="SelectedSeats" name="SelectedSeats" />
 
             <button type="button"
                     class="btn btn-warning confirm-booking"
@@ -81,10 +116,33 @@
 
 <script>
     let selectedSeats = [];
-    let price = 70000;
+    const price = 70000;
+
+    /*
+       Nếu sau này có ghế đã đặt từ database,
+       chỉ cần truyền mảng này từ Controller qua ViewBag.
+       Ví dụ tạm:
+       const soldSeats = ["A1", "A2", "B5"];
+    */
+    const soldSeats = [];
+
+    document.addEventListener("DOMContentLoaded", function () {
+        soldSeats.forEach(function (seatName) {
+            const seat = document.querySelector(`[data-seat="${seatName}"]`);
+
+            if (seat) {
+                seat.classList.add("sold");
+                seat.disabled = true;
+            }
+        });
+    });
 
     function selectSeat(btn) {
-        let seat = btn.innerText.trim();
+        if (btn.classList.contains("sold") || btn.disabled) {
+            return;
+        }
+
+        const seat = btn.dataset.seat;
 
         if (btn.classList.contains("selected")) {
             btn.classList.remove("selected");
@@ -94,6 +152,10 @@
             selectedSeats.push(seat);
         }
 
+        updateBookingSummary();
+    }
+
+    function updateBookingSummary() {
         document.getElementById("selectedSeats").innerText =
             selectedSeats.length > 0 ? selectedSeats.join(", ") : "Chưa chọn";
 
@@ -101,14 +163,22 @@
 
         document.getElementById("totalPrice").innerText =
             (selectedSeats.length * price).toLocaleString("vi-VN") + "đ";
+
+        document.getElementById("SelectedSeats").value = selectedSeats.join(",");
     }
 
     function confirmBooking() {
-        if (selectedSeats.length === 0) {
-            alert("Vui lòng chọn ghế trước khi đặt vé.");
-            return;
-        }
-
-        alert("Đặt vé thành công! Ghế: " + selectedSeats.join(", "));
+    if (selectedSeats.length === 0) {
+        alert("Vui lòng chọn ghế trước khi đặt vé.");
+        return;
     }
+
+    let showtimeId = "@Model.Id";
+    let seats = encodeURIComponent(selectedSeats.join(","));
+    let total = selectedSeats.length * price;
+
+    window.location.href = "/Booking/Combos?showtimeId=" + showtimeId
+        + "&seats=" + seats
+        + "&total=" + total;
+}
 </script>

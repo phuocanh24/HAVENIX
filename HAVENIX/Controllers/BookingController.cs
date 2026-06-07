@@ -22,5 +22,22 @@ namespace HAVENIX.Controllers
 
             return View(showtime);
         }
+
+        public ActionResult Combos(int showtimeId, string seats, int total)
+        {
+            var showtime = db.Showtimes
+                .Include("Movie")
+                .FirstOrDefault(x => x.Id == showtimeId);
+
+            if (showtime == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Seats = seats;
+            ViewBag.TicketTotal = total;
+
+            return View(showtime);
+        }
     }
 }

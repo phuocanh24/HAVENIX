@@ -20,6 +20,10 @@
 
         @foreach (var item in Model)
         {
+            var firstShowtime = item.Showtimes?
+                .OrderBy(x => x.StartTime)
+                .FirstOrDefault();
+
             <div class="movies-card">
 
                 <div class="movie-poster">
@@ -55,21 +59,25 @@
 
                 <div class="movies-actions">
 
-                    <a href="@Url.Action("Details","Movies",
-                       new { id = item.Id })"
+                    <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
                        class="btn-detail">
-
                         Xem chi tiết
-
                     </a>
 
-                    <a href="@Url.Action("Showtimes","Movies",
-                       new { id = item.Id })"
-                       class="btn-book">
-
-                        Đặt vé
-
-                    </a>
+                    @if (firstShowtime != null)
+                    {
+                        <a href="@Url.Action("Create", "Booking", new { showtimeId = firstShowtime.Id })"
+                           class="btn-book">
+                            Đặt vé
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Details", "Movies", new { id = item.Id })"
+                           class="btn-book">
+                            Chưa có suất
+                        </a>
+                    }
 
                 </div>
 

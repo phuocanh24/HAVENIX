@@ -1,0 +1,115 @@
+﻿@model havenix.Models.Showtime
+
+@{
+    ViewBag.Title = "Mua nước và bắp";
+
+    var seats = ViewBag.Seats as string;
+    var ticketTotal = ViewBag.TicketTotal == null ? 0 : (int)ViewBag.TicketTotal;
+}
+
+<div class="booking-page">
+
+    <div class="booking-card combo-card">
+
+        <div class="booking-poster">
+            <img src="@Url.Content(Model.Movie.Image)" alt="@Model.Movie.Name" />
+        </div>
+
+        <div class="booking-info">
+
+            <h1>Mua nước và bắp</h1>
+
+            <div class="booking-detail-grid">
+                <p><b>Phim:</b> @Model.Movie.Name</p>
+                <p><b>Ghế:</b> @seats</p>
+                <p><b>Ngày chiếu:</b> @Model.StartTime.ToString("dd/MM/yyyy")</p>
+                <p><b>Giờ chiếu:</b> @Model.StartTime.ToString("HH:mm")</p>
+            </div>
+
+            <hr />
+
+            <h3>Chọn combo</h3>
+
+            <div class="combo-list">
+
+                <div class="combo-item">
+                    <div>
+                        <h4>Combo Bắp + Nước</h4>
+                        <p>1 bắp lớn + 1 nước</p>
+                        <strong>79.000đ</strong>
+                    </div>
+
+                    <button type="button"
+                            onclick="addCombo('Combo Bắp + Pepsi', 79000)">
+                        Thêm
+                    </button>
+                </div>
+
+                <div class="combo-item">
+                    <div>
+                        <h4>Combo Couple</h4>
+                        <p>1 bắp lớn + 2 nước</p>
+                        <strong>109.000đ</strong>
+                    </div>
+
+                    <button type="button"
+                            onclick="addCombo('Combo Couple', 109000)">
+                        Thêm
+                    </button>
+                </div>
+
+                <div class="combo-item">
+                    <div>
+                        <h4>Combo Family</h4>
+                        <p>2 bắp lớn + 4 nước</p>
+                        <strong>199.000đ</strong>
+                    </div>
+
+                    <button type="button"
+                            onclick="addCombo('Combo Family', 199000)">
+                        Thêm
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="booking-summary">
+                <p><b>Tiền vé:</b> <span>@ticketTotal.ToString("N0")đ</span></p>
+                <p><b>Combo đã chọn:</b> <span id="comboName">Chưa chọn</span></p>
+                <p><b>Tiền combo:</b> <span id="comboPrice">0đ</span></p>
+                <p><b>Tổng thanh toán:</b> <span id="finalTotal">@ticketTotal.ToString("N0")đ</span></p>
+            </div>
+
+            <button type="button"
+                    class="btn btn-warning confirm-booking"
+                    onclick="goCheckout()">
+                Tiếp tục thanh toán
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let ticketTotal = @ticketTotal;
+    let comboName = "";
+    let comboPrice = 0;
+
+    function addCombo(name, price) {
+        comboName = name;
+        comboPrice = price;
+
+        document.getElementById("comboName").innerText = name;
+        document.getElementById("comboPrice").innerText =
+            price.toLocaleString("vi-VN") + "đ";
+
+        document.getElementById("finalTotal").innerText =
+            (ticketTotal + comboPrice).toLocaleString("vi-VN") + "đ";
+    }
+
+    function goCheckout() {
+        alert("Tổng thanh toán: " + (ticketTotal + comboPrice).toLocaleString("vi-VN") + "đ");
+    }
+</script>

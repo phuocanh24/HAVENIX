@@ -14,7 +14,10 @@ namespace HAVENIX.Controllers
         // MOVIES
         public ActionResult Index()
         {
-            var movies = db.Movies.ToList();
+            var movies = db.Movies
+                .Include(x => x.Showtimes)
+                .ToList();
+
             return View(movies);
         }
 
@@ -48,7 +51,7 @@ namespace HAVENIX.Controllers
         public ActionResult Details(int? id)
         {
             var movie = db.Movies
-                .Include("Showtimes")
+                .Include(x => x.Showtimes)
                 .FirstOrDefault(x => x.Id == id);
 
             if (movie == null)
@@ -59,13 +62,15 @@ namespace HAVENIX.Controllers
             return View(movie);
         }
 
-        //SHOWTIMES
+        // SHOWTIMES
         public ActionResult Showtimes(int id, DateTime? date)
         {
             var movie = db.Movies.FirstOrDefault(x => x.Id == id);
 
             if (movie == null)
+            {
                 return HttpNotFound();
+            }
 
             var selectedDate = date ?? DateTime.Today;
 
@@ -81,6 +86,16 @@ namespace HAVENIX.Controllers
             ViewBag.SelectedDate = selectedDate;
 
             return View(showtimes);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
