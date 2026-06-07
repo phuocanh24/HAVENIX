@@ -7,13 +7,13 @@ namespace HAVENIX.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.2")]
-    public sealed partial class AddMovieStatus : IMigrationMetadata
+    public sealed partial class InitDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMovieStatus));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "202606031249312_AddMovieStatus"; }
+            get { return "202606070832525_InitDB"; }
         }
         
         string IMigrationMetadata.Source

@@ -1215,6 +1215,102 @@ body {
     margin-right: auto;
 }
 
+
+/* =========================
+   SEAT LEGEND + VIP + COUPLE
+========================= */
+.seat-status-box {
+    width: fit-content !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    margin: 14px 0 18px !important;
+    padding: 16px 18px !important;
+    background: rgba(255,255,255,.08) !important;
+    border: 2px solid rgba(250,204,21,.45) !important;
+    border-radius: 16px !important;
+}
+
+.seat-status-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+}
+
+.seat-demo {
+    width: 34px !important;
+    height: 26px !important;
+    min-width: 34px !important;
+    display: inline-block !important;
+    border-radius: 8px !important;
+    border: 2px solid rgba(255,255,255,.35) !important;
+}
+
+    .seat-demo.normal {
+        background: #ffffff !important;
+    }
+
+    .seat-demo.vip {
+        background: #f97316 !important;
+    }
+
+    .seat-demo.couple {
+        background: #fca5a5 !important;
+    }
+
+    .seat-demo.choosing {
+        background: #facc15 !important;
+    }
+
+    .seat-demo.sold {
+        background: #6b7280 !important;
+    }
+
+.vip-seat {
+    background: #f97316 !important;
+    color: #111 !important;
+}
+
+.couple-seat {
+    width: 92px !important;
+    background: #fca5a5 !important;
+    color: #5b0b0b !important;
+}
+
+.seat:hover {
+    filter: brightness(.95);
+}
+
+.seat.selected {
+    background: #facc15 !important;
+    color: #111 !important;
+    box-shadow: 0 0 0 3px rgba(250,204,21,.35) !important;
+}
+
+.seat.sold,
+.seat:disabled {
+    background: #6b7280 !important;
+    color: #d1d5db !important;
+    cursor: not-allowed !important;
+    opacity: .75;
+}
+
+@media (max-width: 650px) {
+    .seat-status-box {
+        width: 100% !important;
+    }
+
+    .seat-status-item {
+        font-size: 14px !important;
+    }
+}
+
 /* =========================
    FOOTER
 ========================= */

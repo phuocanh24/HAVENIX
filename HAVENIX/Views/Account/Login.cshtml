@@ -6,14 +6,24 @@
 
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
+
             <div class="form-group">
                 <label>Email</label>
-                <input name="email" type="email" placeholder="Nhập email" class="form-control" />
+                <input name="email"
+                       type="email"
+                       placeholder="Nhập email"
+                       class="form-control"
+                       required />
             </div>
 
             <div class="form-group">
                 <label>Mật khẩu</label>
-                <input type="password" name="password" placeholder="Nhập mật khẩu" class="form-control" />
+                <input type="password"
+                       name="password"
+                       placeholder="Nhập mật khẩu"
+                       class="form-control"
+                       required />
             </div>
 
             if (ViewBag.Error != null)

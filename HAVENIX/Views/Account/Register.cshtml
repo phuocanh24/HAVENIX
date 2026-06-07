@@ -8,28 +8,41 @@
 
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
+
             <div class="form-group">
                 <label>Họ và tên</label>
-                <input name="FullName" placeholder="Nhập họ và tên" class="form-control" />
+                <input name="FullName"
+                       placeholder="Nhập họ và tên"
+                       class="form-control"
+                       required />
             </div>
 
             <div class="form-group">
                 <label>Email</label>
-                <input name="Email" type="email" placeholder="Nhập email" class="form-control" />
+                <input name="Email"
+
+                       type="email"
+                       placeholder="Nhập email"
+                       class="form-control"
+                       required />
             </div>
 
             <div class="form-group">
                 <label>Số điện thoại</label>
-                <input name="Phone" placeholder="Nhập số điện thoại" class="form-control" />
+                <input name="Phone"                      
+                       placeholder="Nhập số điện thoại"
+                       class="form-control"
+                       required />
             </div>
 
             <div class="form-group">
                 <label>Giới tính</label>
                 <select name="Gender" class="form-control">
                     <option value="">-- Chọn giới tính --</option>
-                    <option>Nam</option>
-                    <option>Nữ</option>
-                    <option>Khác</option>
+                    <option @(Model?.Gender == "Nam" ? "selected" : "")>Nam</option>
+                    <option @(Model?.Gender == "Nữ" ? "selected" : "")>Nữ</option>
+                    <option @(Model?.Gender == "Khác" ? "selected" : "")>Khác</option>
                 </select>
             </div>
 
@@ -40,17 +53,28 @@
                        class="form-control"
                        placeholder="dd/mm/yyyy"
                        maxlength="10"
-                       oninput="formatDate(this)" />
+                       oninput="formatDate(this)"
+                       required />
             </div>
 
             <div class="form-group">
                 <label>Mật khẩu</label>
-                <input type="password" name="Password" placeholder="Nhập mật khẩu" class="form-control" />
+                <input type="password"
+                       name="password"
+                       placeholder="Nhập mật khẩu"
+                       class="form-control"
+                       required
+                       minlength="6" />
             </div>
 
             <div class="form-group">
                 <label>Nhập lại mật khẩu</label>
-                <input type="password" name="confirmPassword" placeholder="Nhập lại mật khẩu" class="form-control" />
+                <input type="password"
+                       name="confirmPassword"
+                       placeholder="Nhập lại mật khẩu"
+                       class="form-control"
+                       required
+                       minlength="6" />
             </div>
 
             if (ViewBag.Error != null)

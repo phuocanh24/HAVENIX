@@ -18,7 +18,7 @@
 
             <div class="booking-detail-grid">
                 <p><b>Thể loại:</b> @Model.Movie.Genre</p>
-                <p><b>Thời lượng:</b> @Model.Movie.Duration</p>
+                <p><b>Thời lượng:</b> @Model.Movie.Duration phút</p>
                 <p><b>Ngôn ngữ:</b> @Model.Movie.Language</p>
                 <p><b>Ngày chiếu:</b> @Model.StartTime.ToString("dd/MM/yyyy")</p>
                 <p><b>Giờ chiếu:</b> @Model.StartTime.ToString("HH:mm")</p>
@@ -30,9 +30,20 @@
             <h3>Chọn ghế</h3>
 
             <div class="seat-status-box">
+
                 <div class="seat-status-item">
                     <span class="seat-demo normal"></span>
-                    <b>Ghế trống</b>
+                    <b>Ghế thường A-C: 70.000đ</b>
+                </div>
+
+                <div class="seat-status-item">
+                    <span class="seat-demo vip"></span>
+                    <b>Ghế VIP D-H: 85.000đ</b>
+                </div>
+
+                <div class="seat-status-item">
+                    <span class="seat-demo couple"></span>
+                    <b>Ghế đôi I: 160.000đ</b>
                 </div>
 
                 <div class="seat-status-item">
@@ -44,6 +55,7 @@
                     <span class="seat-demo sold"></span>
                     <b>Ghế đã đặt</b>
                 </div>
+
             </div>
 
             <div class="screen">MÀN HÌNH</div>
@@ -56,10 +68,14 @@
                         @for (int col = 1; col <= 10; col++)
                         {
                             var seatName = row.ToString() + col;
+                            var isVip = row >= 'D' && row <= 'H';
+                            var seatClass = isVip ? "seat vip-seat" : "seat";
+                            var seatPrice = isVip ? 85000 : 70000;
 
                             <button type="button"
-                                    class="seat"
+                                    class="@seatClass"
                                     data-seat="@seatName"
+                                    data-price="@seatPrice"
                                     onclick="selectSeat(this)">
                                 @seatName
                             </button>
@@ -75,6 +91,7 @@
                         <button type="button"
                                 class="seat couple-seat"
                                 data-seat="@seatName"
+                                data-price="160000"
                                 onclick="selectSeat(this)">
                             @seatName
                         </button>
@@ -101,6 +118,7 @@
             </div>
 
             <input type="hidden" id="SelectedSeats" name="SelectedSeats" />
+            <input type="hidden" id="TotalPrice" name="TotalPrice" />
 
             <button type="button"
                     class="btn btn-warning confirm-booking"
@@ -116,14 +134,7 @@
 
 <script>
     let selectedSeats = [];
-    const price = 70000;
 
-    /*
-       Nếu sau này có ghế đã đặt từ database,
-       chỉ cần truyền mảng này từ Controller qua ViewBag.
-       Ví dụ tạm:
-       const soldSeats = ["A1", "A2", "B5"];
-    */
     const soldSeats = [];
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -142,43 +153,51 @@
             return;
         }
 
-        const seat = btn.dataset.seat;
+        const seatName = btn.dataset.seat;
+        const seatPrice = parseInt(btn.dataset.price);
 
         if (btn.classList.contains("selected")) {
             btn.classList.remove("selected");
-            selectedSeats = selectedSeats.filter(x => x !== seat);
+            selectedSeats = selectedSeats.filter(x => x.name !== seatName);
         } else {
             btn.classList.add("selected");
-            selectedSeats.push(seat);
+            selectedSeats.push({
+                name: seatName,
+                price: seatPrice
+            });
         }
 
         updateBookingSummary();
     }
 
     function updateBookingSummary() {
+        const seatNames = selectedSeats.map(x => x.name);
+        const total = selectedSeats.reduce((sum, seat) => sum + seat.price, 0);
+
         document.getElementById("selectedSeats").innerText =
-            selectedSeats.length > 0 ? selectedSeats.join(", ") : "Chưa chọn";
+            seatNames.length > 0 ? seatNames.join(", ") : "Chưa chọn";
 
         document.getElementById("seatCount").innerText = selectedSeats.length;
 
         document.getElementById("totalPrice").innerText =
-            (selectedSeats.length * price).toLocaleString("vi-VN") + "đ";
+            total.toLocaleString("vi-VN") + "đ";
 
-        document.getElementById("SelectedSeats").value = selectedSeats.join(",");
+        document.getElementById("SelectedSeats").value = seatNames.join(",");
+        document.getElementById("TotalPrice").value = total;
     }
 
     function confirmBooking() {
-    if (selectedSeats.length === 0) {
-        alert("Vui lòng chọn ghế trước khi đặt vé.");
-        return;
+        if (selectedSeats.length === 0) {
+            alert("Vui lòng chọn ghế trước khi đặt vé.");
+            return;
+        }
+
+        const showtimeId = "@Model.Id";
+        const seats = encodeURIComponent(selectedSeats.map(x => x.name).join(","));
+        const total = selectedSeats.reduce((sum, seat) => sum + seat.price, 0);
+
+        window.location.href = "/Booking/Combos?showtimeId=" + showtimeId
+            + "&seats=" + seats
+            + "&total=" + total;
     }
-
-    let showtimeId = "@Model.Id";
-    let seats = encodeURIComponent(selectedSeats.join(","));
-    let total = selectedSeats.length * price;
-
-    window.location.href = "/Booking/Combos?showtimeId=" + showtimeId
-        + "&seats=" + seats
-        + "&total=" + total;
-}
 </script>

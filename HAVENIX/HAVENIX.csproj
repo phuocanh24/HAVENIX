@@ -136,24 +136,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202605221138081_InitDB.cs" />
-    <Compile Include="Migrations\202605221138081_InitDB.Designer.cs">
-      <DependentUpon>202605221138081_InitDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202605221146543_UpdateModel.cs" />
-    <Compile Include="Migrations\202605221146543_UpdateModel.Designer.cs">
-      <DependentUpon>202605221146543_UpdateModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202605271504286_FixMovieImages.cs" />
-    <Compile Include="Migrations\202605271504286_FixMovieImages.Designer.cs">
-      <DependentUpon>202605271504286_FixMovieImages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202606031249312_AddMovieStatus.cs" />
-    <Compile Include="Migrations\202606031249312_AddMovieStatus.Designer.cs">
-      <DependentUpon>202606031249312_AddMovieStatus.cs</DependentUpon>
+    <Compile Include="Data\HavenixDbContext.cs" />
+    <Compile Include="Migrations\202606070832525_InitDB.cs" />
+    <Compile Include="Migrations\202606070832525_InitDB.Designer.cs">
+      <DependentUpon>202606070832525_InitDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\HavenixDbContext.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Showtime.cs" />
     <Compile Include="Models\User.cs" />
@@ -257,7 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
     <Folder Include="Views\Info\" />
   </ItemGroup>
   <ItemGroup>
@@ -288,17 +275,8 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202605221138081_InitDB.resx">
-      <DependentUpon>202605221138081_InitDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202605221146543_UpdateModel.resx">
-      <DependentUpon>202605221146543_UpdateModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202605271504286_FixMovieImages.resx">
-      <DependentUpon>202605271504286_FixMovieImages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202606031249312_AddMovieStatus.resx">
-      <DependentUpon>202606031249312_AddMovieStatus.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202606070832525_InitDB.resx">
+      <DependentUpon>202606070832525_InitDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

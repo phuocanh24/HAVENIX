@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace havenix.Models
 {
@@ -9,11 +8,16 @@ namespace havenix.Models
     {
         public int Id { get; set; }
 
+        [Index("IX_Showtime_Movie_StartTime", 1)]
         public int MovieId { get; set; }
+
         public virtual Movie Movie { get; set; }
 
+        [Index("IX_Showtime_Movie_StartTime", 2)]
         public DateTime StartTime { get; set; }
 
+        [Required]
+        [StringLength(50)]
         public string Room { get; set; }
     }
 }
