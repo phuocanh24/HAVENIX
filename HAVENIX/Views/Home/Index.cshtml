@@ -9,7 +9,6 @@
 
     var dangChieu = movies
         .Where(x => x.Status == "Đang chiếu")
-        .Take(4)
         .ToList();
 
     var sapChieu = movies
@@ -119,47 +118,49 @@
     </div>
 
     <div id="dangchieu" class="movie-content active">
-        <div class="movie-track">
+        <div class="movie-slider-wrap">
 
-            @foreach (var movie in dangChieu)
-            {
-                <div class="movie-card">
-                    <a href="@Url.Action("Details","Movies", new { id = movie.Id })" class="movie-img-link">
-                        <img src="@Url.Content(movie.Image)" alt="@movie.Name" />
-                    </a>
+            <button class="movie-arrow left" onclick="scrollDangChieu(-1)">‹</button>
 
-                    <div class="movie-info">
-                        <h3>@movie.Name</h3>
+            <div class="movie-track-slider" id="dangChieuTrack">
+                @foreach (var movie in dangChieu)
+                {
+                    var firstShowtime = movie.Showtimes?
+                        .OrderBy(x => x.StartTime)
+                        .FirstOrDefault();
 
-                        <div class="movie-actions">
-                            <a href="@Url.Action("Details","Movies", new { id = movie.Id })">
-                                Xem chi tiết
-                            </a>
+                    <div class="movie-card">
+                        <a href="@Url.Action("Details","Movies", new { id = movie.Id })" class="movie-img-link">
+                            <img src="@Url.Content(movie.Image)" alt="@movie.Name" />
+                        </a>
 
-                            @{
-                                var firstShowtime = movie.Showtimes?
-                                    .OrderBy(x => x.StartTime)
-                                    .FirstOrDefault();
-                            }
+                        <div class="movie-info">
+                            <h3>@movie.Name</h3>
 
-                            @if (firstShowtime != null)
-                            {
-                                <a href="@Url.Action("Create","Booking",
-                                    new { showtimeId = firstShowtime.Id })">
-                                    Đặt vé
+                            <div class="movie-actions">
+                                <a href="@Url.Action("Details","Movies", new { id = movie.Id })">
+                                    Xem chi tiết
                                 </a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Details","Movies",
-                                    new { id = movie.Id })">
-                                    Chưa có suất
-                                </a>
-                            }
+
+                                @if (firstShowtime != null)
+                                {
+                                    <a href="@Url.Action("Create","Booking", new { showtimeId = firstShowtime.Id })">
+                                        Đặt vé
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Details","Movies", new { id = movie.Id })">
+                                        Chưa có suất
+                                    </a>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+
+            <button class="movie-arrow right" onclick="scrollDangChieu(1)">›</button>
 
         </div>
     </div>
@@ -222,5 +223,20 @@
 
         document.getElementById(tabId).classList.add('active');
         event.target.classList.add('active');
+    }
+
+    function scrollDangChieu(direction) {
+
+        const track = document.getElementById("dangChieuTrack");
+        const card = track.querySelector(".movie-card");
+
+        if (!card) return;
+
+        const gap = 26;
+
+        track.scrollBy({
+            left: direction * ((card.offsetWidth + gap) * 4),
+            behavior: "smooth"
+        });
     }
 </script>

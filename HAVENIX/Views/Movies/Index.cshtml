@@ -1,4 +1,5 @@
-﻿@model IEnumerable<havenix.Models.Movie>
+﻿@using System.Linq
+@model IEnumerable<havenix.Models.Movie>
 
 @{
     ViewBag.Title = "Danh sách phim";
@@ -8,10 +9,6 @@
 
     @if (ViewBag.Keyword != null)
     {
-        <div class="alert alert-info">
-            Kết quả tìm kiếm cho:
-            <strong>@ViewBag.Keyword</strong>
-        </div>
 
         if (!Model.Any())
         {
@@ -29,7 +26,7 @@
             <select name="genre">
                 <option value="">Tất cả thể loại</option>
 
-                @foreach (string g in ViewBag.Genres)
+                @foreach (string g in (ViewBag.Genres ?? Enumerable.Empty<string>()))
                 {
                     <option value="@g"
                             @(ViewBag.SelectedGenre == g ? "selected" : "")>
@@ -41,7 +38,7 @@
             <select name="status">
                 <option value="">Tất cả trạng thái</option>
 
-                @foreach (string s in ViewBag.Statuses)
+                @foreach (string s in (ViewBag.Statuses ?? Enumerable.Empty<string>()))
                 {
                     <option value="@s"
                             @(ViewBag.SelectedStatus == s ? "selected" : "")>

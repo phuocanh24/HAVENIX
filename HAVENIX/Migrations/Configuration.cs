@@ -22,7 +22,7 @@
                 new Movie { Name = "MAI", Genre = "Tình cảm", Duration = 131, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Tiếng Việt", Image = "/Content/Img/maipos.jpg", Description = "Phim tình cảm Việt Nam" },
                 new Movie { Name = "BỐ GIÀ", Genre = "Gia đình", Duration = 128, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Tiếng Việt", Image = "/Content/Img/bogiaposter.jpg", Description = "Câu chuyện gia đình cảm động" },
                 new Movie { Name = "Nhà Bà Nữ", Genre = "Drama", Duration = 102, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Tiếng Việt", Image = "/Content/Img/nhabanuposter.jpg", Description = "Phim drama xã hội Việt Nam" },
-                new Movie { Name = "LẬT MẶT 7: MỘT ĐIỀU ƯỚC", Genre = "Hành động", Duration = 130, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Tiếng Việt", Image = "/Content/Img/latmat7poster.jpg", Description = "Phim tình cảm gia đình" },
+                new Movie { Name = "LẬT MẶT 7: MỘT ĐIỀU ƯỚC", Genre = "Gia đình", Duration = 130, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Tiếng Việt", Image = "/Content/Img/latmat7poster.jpg", Description = "Phim tình cảm gia đình" },
                 new Movie { Name = "DORAEMON: KHÁM PHÁ ĐÁY ĐẠI DƯƠNG", Genre = "Anime", Duration = 109, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Lồng tiếng", Image = "/Content/Img/doraemonposter.jpg", Description = "Phim hoạt hình tuổi thơ" },
                 new Movie { Name = "THANH GƯƠM DIỆT QUỶ: VÔ HẠN THÀNH", Genre = "Anime", Duration = 117, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Phụ đề", Image = "/Content/Img/tgdqposter.jpg", Description = "Anime hành động nổi tiếng" },
                 new Movie { Name = "ATTACK ON TITAN 4", Genre = "Anime", Duration = 120, ReleaseDate = new DateTime(2026, 5, 22), Status = "Đang chiếu", Language = "Phụ đề", Image = "/Content/Img/attachposter.jpg", Description = "Cuộc chiến nhân loại và Titan" },
@@ -42,27 +42,27 @@
 
             int[][] movieHours =
             {
-                new[] { 9, 12, 15, 18, 21 },
-                new[] { 10, 13, 16, 19, 22 },
-                new[] { 11, 14, 17, 20, 23 },
-                new[] { 9, 13, 17, 21, 23 },
-                new[] { 10, 12, 16, 20, 22 },
-                new[] { 11, 15, 18, 21, 23 },
-                new[] { 9, 14, 16, 19, 22 },
-                new[] { 10, 15, 17, 20, 23 },
-                new[] { 11, 13, 18, 21, 22 },
-                new[] { 9, 12, 16, 19, 23 },
-                new[] { 10, 14, 17, 20, 22 },
-                new[] { 9, 13, 16, 18, 21 }
+                new[] { 8, 10, 12, 14, 16, 18, 20, 22 },
+                new[] { 9, 11, 13, 15, 17, 19, 21, 23 },
+                new[] { 8, 11, 14, 16, 18, 20, 22, 23 },
+                new[] { 9, 10, 12, 15, 17, 19, 21, 22 },
+                new[] { 8, 10, 13, 15, 18, 20, 21, 23 },
+                new[] { 9, 11, 14, 16, 18, 19, 21, 23 },
+                new[] { 8, 10, 12, 14, 17, 19, 20, 22 },
+                new[] { 9, 11, 13, 15, 16, 18, 21, 23 },
+                new[] { 8, 10, 12, 15, 17, 19, 21, 22 },
+                new[] { 9, 11, 14, 16, 18, 20, 22, 23 },
+                new[] { 8, 10, 13, 15, 17, 19, 21, 23 },
+                new[] { 9, 12, 14, 16, 18, 20, 22, 23 }
             };
 
             for (int d = 0; d < 7; d++)
             {
-                DateTime day = new DateTime(2026, 5, 22).AddDays(d);
+                DateTime day = DateTime.Today.AddDays(d);
 
                 for (int m = 0; m < dbMovies.Count; m++)
                 {
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < movieHours[m % movieHours.Length].Length; i++)
                     {
                         context.Showtimes.Add(new Showtime
                         {

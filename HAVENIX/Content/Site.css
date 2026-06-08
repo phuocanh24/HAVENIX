@@ -486,41 +486,71 @@ body {
    MOVIE FILTERS + SEARCH RESULT
 ========================= */
 .movie-filters {
-    width: 100%;
-    margin: -18px auto 35px;
-    display: flex;
-    justify-content: center;
+    width: fit-content;
+    margin: 20px auto 40px;
+    padding: 18px 25px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
 }
 
     .movie-filters form {
-        width: min(850px, 100%);
         display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
         align-items: center;
-        background: #fff;
-        padding: 16px 20px;
-        border-radius: 18px;
-        box-shadow: 0 8px 22px rgba(0,0,0,.12);
+        gap: 15px;
+        flex-wrap: wrap;
     }
 
     .movie-filters select {
-        min-width: 190px;
-        height: 44px;
-        padding: 0 14px;
-        border-radius: 999px;
-        border: 2px solid #5b0b0b;
+        min-width: 180px;
+        height: 48px;
+        padding: 0 16px;
+        border: 2px solid #7d0000;
+        border-radius: 30px;
         background: #fff;
-        color: #5b0b0b;
-        font-weight: 800;
+        font-weight: 600;
+        color: #333;
         outline: none;
+        cursor: pointer;
+        transition: .3s;
     }
 
+        .movie-filters select:hover,
         .movie-filters select:focus {
             border-color: #facc15;
-            box-shadow: 0 0 0 3px rgba(250,204,21,.25);
         }
+
+.btn-filter {
+    height: 48px;
+    padding: 0 30px;
+    border: none;
+    border-radius: 30px;
+    background: #facc15;
+    color: #111;
+    font-weight: 700;
+    transition: .3s;
+}
+
+    .btn-filter:hover {
+        background: #eab308;
+        transform: translateY(-2px);
+    }
+
+@media (max-width:768px) {
+    .movie-filters {
+        width: 95%;
+        padding: 15px;
+    }
+
+        .movie-filters form {
+            flex-direction: column;
+        }
+
+        .movie-filters select,
+        .btn-filter {
+            width: 100%;
+        }
+}
 
 .btn-filter {
     height: 44px;
@@ -2125,3 +2155,215 @@ body {
     }
 }
 
+/* POPUP THÔNG BÁO PHIM */
+.movie-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-popup-box {
+    position: relative;
+    width: 420px;
+    max-width: 90%;
+}
+
+    .movie-popup-box img {
+        width: 100%;
+        display: block;
+    }
+
+.movie-popup-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: black;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* =========================================================
+   HOME MOVIE SLIDER - FIXED
+   Dùng với HTML:
+   .movie-slider-wrap > .movie-arrow + #dangChieuTrack.movie-track-slider > .movie-card
+========================================================= */
+.home-movies .movie-slider-wrap {
+    position: relative !important;
+    width: min(1058px, 100%) !important;
+    max-width: 1058px !important;
+    margin: 0 auto !important;
+    padding: 0 50px !important;
+    overflow: visible !important;
+}
+
+.home-movies .movie-track-slider {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 26px !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+    .home-movies .movie-track-slider .movie-card {
+        flex: 0 0 220px !important;
+        min-width: 220px !important;
+        max-width: 220px !important;
+        width: 220px !important;
+    }
+
+        .home-movies .movie-track-slider .movie-card img {
+            width: 100% !important;
+            height: 320px !important;
+            object-fit: cover !important;
+            display: block !important;
+        }
+
+    .home-movies .movie-track-slider .movie-info {
+        min-height: 135px !important;
+        padding: 14px !important;
+        text-align: center !important;
+        color: white !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+    }
+
+        .home-movies .movie-track-slider .movie-info h3 {
+            margin: 0 !important;
+            color: white !important;
+            font-size: 18px !important;
+            font-weight: 800 !important;
+            line-height: 1.25 !important;
+        }
+
+    .home-movies .movie-track-slider .movie-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        margin-top: 12px !important;
+    }
+
+        .home-movies .movie-track-slider .movie-actions a {
+            background: #5b0b0b !important;
+            color: white !important;
+            text-decoration: none !important;
+            padding: 9px 6px !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+        }
+
+            .home-movies .movie-track-slider .movie-actions a:last-child {
+                background: #facc15 !important;
+                color: #111 !important;
+            }
+
+.home-movies .movie-arrow {
+    position: absolute !important;
+    top: 43% !important;
+    transform: translateY(-50%) !important;
+    z-index: 99999 !important;
+    width: 44px !important;
+    height: 74px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: rgba(0, 0, 0, .55) !important;
+    color: #fff !important;
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+    .home-movies .movie-arrow.left {
+        left: 0 !important;
+    }
+
+    .home-movies .movie-arrow.right {
+        right: 0 !important;
+    }
+
+    .home-movies .movie-arrow:hover {
+        background: rgba(91, 11, 11, .9) !important;
+        color: #facc15 !important;
+    }
+
+/* Ẩn scrollbar nếu trình duyệt tự hiện */
+.home-movies .movie-track-slider::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Tắt bộ cinema slider cũ nếu còn sót CSS/HTML */
+.home-movies .cinema-slider-wrap,
+.home-movies .cinema-track,
+.home-movies .cinema-card,
+.home-movies .cinema-book-btn,
+.home-movies .cinema-arrow {
+    all: unset;
+}
+
+/* Responsive slider */
+@media (max-width: 1199px) {
+    .home-movies .movie-slider-wrap {
+        width: min(538px, 100%) !important;
+        max-width: 538px !important;
+        padding: 0 38px !important;
+    }
+
+    .home-movies .movie-track-slider .movie-card {
+        flex: 0 0 220px !important;
+        min-width: 220px !important;
+        max-width: 220px !important;
+    }
+
+    .home-movies .movie-arrow {
+        width: 36px !important;
+        height: 66px !important;
+        font-size: 34px !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .home-movies .movie-slider-wrap {
+        width: min(340px, 100%) !important;
+        max-width: 340px !important;
+        padding: 0 34px !important;
+    }
+
+    .home-movies .movie-track-slider {
+        gap: 18px !important;
+    }
+
+        .home-movies .movie-track-slider .movie-card {
+            flex: 0 0 260px !important;
+            min-width: 260px !important;
+            max-width: 260px !important;
+        }
+
+            .home-movies .movie-track-slider .movie-card img {
+                height: 380px !important;
+            }
+
+    .home-movies .movie-arrow {
+        width: 32px !important;
+        height: 62px !important;
+        font-size: 30px !important;
+    }
+}

@@ -1,7 +1,8 @@
-﻿using System.Data.Entity;
+﻿using havenix.Data;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using havenix.Data;
 
 namespace HAVENIX.Controllers
 {
@@ -11,9 +12,12 @@ namespace HAVENIX.Controllers
 
         public ActionResult Index()
         {
+            var now = DateTime.Now;
+
             var showtimes = db.Showtimes
-                .Include(s => s.Movie)
-                .OrderBy(s => s.StartTime)
+                .Include("Movie")
+                .Where(x => x.StartTime >= now)
+                .OrderBy(x => x.StartTime)
                 .ToList();
 
             return View(showtimes);

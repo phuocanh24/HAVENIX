@@ -76,6 +76,8 @@ namespace HAVENIX.Controllers
         // DETAILS
         public ActionResult Details(int? id)
         {
+            var now = DateTime.Now;
+
             var movie = db.Movies
                 .Include(x => x.Showtimes)
                 .FirstOrDefault(x => x.Id == id);
@@ -84,6 +86,11 @@ namespace HAVENIX.Controllers
             {
                 return HttpNotFound();
             }
+
+            movie.Showtimes = movie.Showtimes
+                .Where(x => x.StartTime >= now)
+                .OrderBy(x => x.StartTime)
+                .ToList();
 
             return View(movie);
         }
