@@ -280,7 +280,9 @@ body {
         width: 100% !important;
         height: clamp(220px, 35vw, 520px) !important;
         object-fit: cover !important;
-        filter: brightness(.72);
+        object-position: center center !important;
+        filter: none !important;
+        opacity: 1 !important;
     }
 
 /* Nút đặt vé giữa banner và danh sách phim */
@@ -2122,3 +2124,4 @@ body {
         height: min(420px, calc(100vh - 250px)) !important;
     }
 }
+
