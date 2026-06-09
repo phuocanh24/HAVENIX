@@ -1,6 +1,4 @@
-﻿*,
-*::before,
-*::after {
+﻿*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -20,7 +18,7 @@ body {
     flex-direction: column;
     background: #d9d6cc;
     color: #1f2937;
-    font-family: 'Cantarell', sans-serif;
+    font-family: "Cantarell", sans-serif;
     margin: 0;
     padding-top: 76px;
     overflow-x: hidden;
@@ -32,21 +30,10 @@ body {
     max-width: 100%;
 }
 
-.container,
-.movie-section,
-.movies-page,
-.showtime-page,
-.showtime-container,
-.booking-page,
-.info-page,
-.about-havenix-page,
-.site-footer {
+.container, .movie-section, .movies-page, .showtime-page, .showtime-container, .booking-page, .info-page, .about-havenix-page, .site-footer {
     max-width: 100%;
 }
 
-/* =========================
-   NAVBAR
-========================= */
 .custom-navbar {
     background: #5b0b0b;
     height: 76px;
@@ -86,8 +73,7 @@ body {
     align-items: center;
 }
 
-.main-menu,
-.account-menu {
+.main-menu, .account-menu {
     display: flex;
     align-items: center;
 }
@@ -110,13 +96,19 @@ body {
     transition: .25s;
 }
 
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link.active {
-        background: #facc15;
-        color: #111 !important;
+    .navbar-nav .nav-link[href*="Login"] {
+        background: transparent !important;
+        color: #fff !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
-.register-link,
+        .navbar-nav .nav-link[href*="Login"]:hover, .navbar-nav .nav-link[href*="Login"]:focus, .navbar-nav .nav-link[href*="Login"].active {
+            background: transparent !important;
+            color: #facc15 !important;
+            box-shadow: none !important;
+        }
+
 .user-link {
     background: rgba(250,204,21,.18);
     color: #facc15 !important;
@@ -159,9 +151,6 @@ body {
         justify-content: center;
     }
 
-/* =========================
-   BUTTON
-========================= */
 .btn-warning {
     background: #facc15;
     border: none;
@@ -177,9 +166,6 @@ body {
         transform: translateY(-2px);
     }
 
-/* =========================
-   TOP ADS + SIDE BANNERS
-========================= */
 .hx-top-ad {
     position: relative !important;
     z-index: 1 !important;
@@ -198,7 +184,6 @@ body {
         background: #fff7e6 !important;
     }
 
-/* Banner 2 bên luôn fixed, đi theo khi cuộn */
 .hx-side-banner {
     position: fixed !important;
     top: 95px !important;
@@ -243,7 +228,6 @@ body {
         margin-top: 0 !important;
     }
 
-/* Đường film đỏ full màn hình */
 .hx-film-line {
     position: relative !important;
     z-index: 0 !important;
@@ -260,9 +244,6 @@ body {
     border-bottom: 3px solid #d71920 !important;
 }
 
-/* =========================
-   HOME BANNER
-========================= */
 .home-hero {
     position: relative;
 }
@@ -285,7 +266,6 @@ body {
         opacity: 1 !important;
     }
 
-/* Nút đặt vé giữa banner và danh sách phim */
 .home-booking-center {
     width: 100%;
     text-align: center;
@@ -307,9 +287,6 @@ body {
         box-shadow: 0 8px 20px rgba(0,0,0,.2);
     }
 
-/* =========================
-   HOME MOVIES
-========================= */
 .movie-section {
     padding: 50px 20px;
     background: #d9d6cc;
@@ -361,8 +338,7 @@ body {
         transition: .25s;
     }
 
-        .movie-tabs .tab-btn.active,
-        .movie-tabs .tab-btn:hover {
+        .movie-tabs .tab-btn.active, .movie-tabs .tab-btn:hover {
             background: #facc15;
             color: #111;
         }
@@ -382,8 +358,7 @@ body {
     gap: 26px;
 }
 
-.movie-card,
-.movies-card {
+.movie-card, .movies-card {
     width: 100% !important;
     max-width: 100%;
     background: #a94343;
@@ -396,8 +371,7 @@ body {
     transition: .25s;
 }
 
-    .movie-card:hover,
-    .movies-card:hover {
+    .movie-card:hover, .movies-card:hover {
         transform: translateY(-8px);
     }
 
@@ -428,8 +402,7 @@ body {
         font-weight: 800;
     }
 
-.movie-actions,
-.movies-actions {
+.movie-actions, .movies-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -454,9 +427,6 @@ body {
             color: #111 !important;
         }
 
-/* =========================
-   MOVIES PAGE
-========================= */
 .movies-page {
     max-width: 1250px;
     margin: 50px auto;
@@ -468,8 +438,7 @@ body {
     margin-bottom: 40px;
 }
 
-    .movies-header h2,
-    .movies-page h2 {
+    .movies-header h2, .movies-page h2 {
         color: #5b0b0b;
         font-size: 42px;
         font-weight: 900;
@@ -481,10 +450,6 @@ body {
         font-size: 18px;
     }
 
-
-/* =========================
-   MOVIE FILTERS + SEARCH RESULT
-========================= */
 .movie-filters {
     width: fit-content;
     margin: 20px auto 40px;
@@ -515,42 +480,9 @@ body {
         transition: .3s;
     }
 
-        .movie-filters select:hover,
-        .movie-filters select:focus {
+        .movie-filters select:hover, .movie-filters select:focus {
             border-color: #facc15;
         }
-
-.btn-filter {
-    height: 48px;
-    padding: 0 30px;
-    border: none;
-    border-radius: 30px;
-    background: #facc15;
-    color: #111;
-    font-weight: 700;
-    transition: .3s;
-}
-
-    .btn-filter:hover {
-        background: #eab308;
-        transform: translateY(-2px);
-    }
-
-@media (max-width:768px) {
-    .movie-filters {
-        width: 95%;
-        padding: 15px;
-    }
-
-        .movie-filters form {
-            flex-direction: column;
-        }
-
-        .movie-filters select,
-        .btn-filter {
-            width: 100%;
-        }
-}
 
 .btn-filter {
     height: 44px;
@@ -560,8 +492,8 @@ body {
     background: #facc15;
     color: #111;
     font-weight: 900;
-    cursor: pointer;
     transition: .25s;
+    cursor: pointer;
 }
 
     .btn-filter:hover {
@@ -607,8 +539,7 @@ body {
     flex: 0 0 auto;
 }
 
-    .movie-poster img,
-    .movies-card img {
+    .movie-poster img, .movies-card img {
         width: 100%;
         height: 350px;
         object-fit: cover;
@@ -659,8 +590,7 @@ body {
     width: 100%;
 }
 
-.btn-detail,
-.btn-book {
+.btn-detail, .btn-book {
     min-height: 56px;
     text-decoration: none !important;
     text-align: center;
@@ -683,9 +613,6 @@ body {
     color: #111 !important;
 }
 
-/* =========================
-   MOVIE DETAIL
-========================= */
 .movie-detail-box {
     width: min(1180px, calc(100% - 28px));
     max-width: 1180px;
@@ -772,25 +699,12 @@ body {
     font-size: 18px;
 }
 
-/* =========================
-   SHOWTIME
-========================= */
-.showtime-container,
-.showtime-page {
-    width: min(1180px, calc(100% - 28px));
-    max-width: 1180px;
-    margin: 45px auto;
-    padding: 0;
-    display: block !important;
+.showtime-container h2, .showtime-header h1 {
+    color: #5b0b0b !important;
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 25px;
 }
-
-    .showtime-container h2,
-    .showtime-header h1 {
-        color: #5b0b0b !important;
-        font-size: 42px;
-        font-weight: 900;
-        margin-bottom: 25px;
-    }
 
 .showtime-header {
     text-align: center;
@@ -833,15 +747,13 @@ body {
         transition: .25s;
     }
 
-        .date-tabs .tab-btn:hover,
-        .date-tabs .tab-btn.active {
+        .date-tabs .tab-btn:hover, .date-tabs .tab-btn.active {
             background: #facc15;
             color: #111;
             border-color: #facc15;
         }
 
-        .date-tabs .tab-btn span,
-        .date-tabs .tab-btn small {
+        .date-tabs .tab-btn span, .date-tabs .tab-btn small {
             display: block;
         }
 
@@ -882,8 +794,7 @@ body {
     transition: .25s;
 }
 
-    .time-btn:hover,
-    .time-btn.active {
+    .time-btn:hover, .time-btn.active {
         background: #facc15 !important;
         color: #111 !important;
     }
@@ -904,7 +815,6 @@ body {
     font-weight: 800;
 }
 
-/* Schedule card */
 .schedule-card {
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -929,8 +839,7 @@ body {
     padding: 10px 0;
 }
 
-    .schedule-info h3,
-    .schedule-info h4 {
+    .schedule-info h3, .schedule-info h4 {
         color: #111;
         font-size: 30px;
         font-weight: 900;
@@ -954,9 +863,6 @@ body {
         font-weight: 700;
     }
 
-/* =========================
-   INFO + ABOUT
-========================= */
 .info-page {
     max-width: 1100px;
     margin: 45px auto;
@@ -1009,8 +915,7 @@ body {
         border-radius: 12px;
     }
 
-        .about-sidebar a.active,
-        .about-sidebar a:hover {
+        .about-sidebar a.active, .about-sidebar a:hover {
             background: #5b0b0b;
             color: white !important;
         }
@@ -1044,9 +949,6 @@ body {
     margin-bottom: 13px;
 }
 
-/* =========================
-   AUTH
-========================= */
 .auth-page {
     min-height: calc(100vh - 86px);
     display: flex;
@@ -1139,8 +1041,7 @@ body {
     font-size: 14px;
 }
 
-    .auth-row a,
-    .auth-bottom a {
+    .auth-row a, .auth-bottom a {
         color: #5b0b0b !important;
         font-weight: 800;
         text-decoration: none;
@@ -1152,24 +1053,10 @@ body {
     color: #4b5563;
 }
 
-/* =========================
-   BOOKING + SEATS
-========================= */
 .booking-page {
     max-width: 1200px;
     margin: 50px auto;
     padding: 0 20px;
-}
-
-.booking-card {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 35px;
-    background: #5b0b0b;
-    color: white;
-    border-radius: 24px;
-    padding: 35px;
-    box-shadow: 0 12px 35px rgba(0,0,0,.25);
 }
 
 .booking-poster img {
@@ -1207,34 +1094,6 @@ body {
     margin-bottom: 15px;
 }
 
-.screen {
-    background: white;
-    color: #5b0b0b;
-    text-align: center;
-    padding: 12px;
-    border-radius: 50px;
-    font-weight: 900;
-    margin: 20px 0;
-}
-
-.seat-map {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 25px;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 10px;
-}
-
-.seat-row,
-.couple-row {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    min-width: max-content;
-}
-
 .seat {
     width: 48px;
     height: 42px;
@@ -1258,28 +1117,24 @@ body {
     font-size: 18px;
 }
 
-
-/* Fix trang About/Booking/Showtime không bị bóp ngang khi không có banner bên */
-.movies-page,
-.showtime-page,
-.showtime-container,
-.booking-page,
-.info-page,
-.about-havenix-page {
+.movies-page, .showtime-page, .showtime-container, .booking-page, .info-page, .about-havenix-page {
     padding-left: 20px !important;
     padding-right: 20px !important;
 }
 
-.booking-card,
-.movie-detail-box,
-.movie-showtime-box,
-.schedule-card,
-.about-content,
-.info-page {
+.booking-card, .movie-detail-box, .movie-showtime-box, .schedule-card, .about-content, .info-page {
     max-width: 100% !important;
 }
 
 .booking-card {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 35px;
+    background: #5b0b0b;
+    color: white;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.25);
     overflow: hidden;
 }
 
@@ -1289,28 +1144,40 @@ body {
 }
 
 .screen {
+    background: white;
+    color: #5b0b0b;
+    text-align: center;
+    padding: 12px;
+    border-radius: 50px;
+    font-weight: 900;
+    margin: 20px 0;
     max-width: 100%;
 }
 
 .seat-map {
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+    width: 100%;
     overflow-x: auto;
+    padding-bottom: 10px;
+    max-width: 100%;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
-.seat-row,
-.couple-row {
+.seat-row, .couple-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    min-width: max-content;
     width: max-content;
     max-width: none;
     margin-left: auto;
     margin-right: auto;
 }
 
-
-/* =========================
-   SEAT LEGEND + VIP + COUPLE
-========================= */
 .seat-status-box {
     width: fit-content !important;
     max-width: 100% !important;
@@ -1385,27 +1252,13 @@ body {
     box-shadow: 0 0 0 3px rgba(250,204,21,.35) !important;
 }
 
-.seat.sold,
-.seat:disabled {
+.seat.sold, .seat:disabled {
     background: #6b7280 !important;
     color: #d1d5db !important;
     cursor: not-allowed !important;
     opacity: .75;
 }
 
-@media (max-width: 650px) {
-    .seat-status-box {
-        width: 100% !important;
-    }
-
-    .seat-status-item {
-        font-size: 14px !important;
-    }
-}
-
-/* =========================
-   FOOTER
-========================= */
 .site-footer {
     position: relative !important;
     z-index: 1 !important;
@@ -1439,8 +1292,7 @@ body {
     margin-bottom: 16px;
 }
 
-.footer-col p,
-.footer-col a {
+.footer-col p, .footer-col a {
     display: block;
     color: #e5e7eb !important;
     text-decoration: none !important;
@@ -1481,8 +1333,7 @@ body {
             background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
         }
 
-        .hx-social a:nth-child(3),
-        .hx-social .zalo-text-icon {
+        .hx-social a:nth-child(3), .hx-social .zalo-text-icon {
             background: #0068ff !important;
             color: white !important;
             font-size: 15px !important;
@@ -1509,653 +1360,21 @@ body {
     font-size: 14px;
 }
 
-/* =========================
-   DETAIL + SHOWTIME SAME WIDTH
-========================= */
-.movie-detail-box,
-.movie-showtime-box {
+.movie-detail-box, .movie-showtime-box {
     width: min(1180px, calc(100% - 28px));
     max-width: 1180px;
 }
 
-.showtime-container,
-.showtime-page {
+.showtime-container, .showtime-page {
     width: min(1180px, calc(100% - 28px));
     max-width: 1180px;
+    margin: 45px auto;
+    padding: 0;
+    display: block !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
-/* =========================================================
-   RESPONSIVE - DESKTOP 24 INCH / LARGE
-========================================================= */
-@media (min-width: 1537px) {
-    .hx-side-banner {
-        display: flex !important;
-        width: 180px !important;
-        top: 95px !important;
-    }
-
-    .hx-banner-left {
-        left: 12px !important;
-    }
-
-    .hx-banner-right {
-        right: 12px !important;
-    }
-
-    .home-hero,
-    .home-booking-center,
-    .movie-section {
-        padding-left: 220px !important;
-        padding-right: 220px !important;
-    }
-
-    .hx-top-ad {
-        width: calc(100% - 440px) !important;
-        max-width: 1250px !important;
-        height: 100px !important;
-    }
-
-    .banner-slide {
-        max-width: 1250px !important;
-    }
-
-    .section-title,
-    .movie-tabs {
-        max-width: 1200px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    .home-movies .movie-track {
-        grid-template-columns: repeat(4, 220px) !important;
-        gap: 26px !important;
-        max-width: 1200px !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-    }
-
-    .home-movies .movie-card img {
-        height: 320px !important;
-        object-fit: cover !important;
-    }
-
-    .movies-page,
-    .showtime-page,
-    .showtime-container,
-    .booking-page,
-    .info-page,
-    .about-havenix-page {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-
-    .site-footer .container {
-        width: min(1200px, calc(100% - 32px)) !important;
-        max-width: 1200px !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1.5fr 1fr 1fr 1fr !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-}
-
-/* =========================================================
-   RESPONSIVE - LAPTOP 15.6 INCH
-========================================================= */
-@media (max-width: 1536px) and (min-width: 1200px) {
-    .custom-navbar .container {
-        max-width: 1160px !important;
-        padding-left: 18px !important;
-        padding-right: 18px !important;
-    }
-
-    .navbar-brand {
-        margin-right: 38px !important;
-    }
-
-    .nav-search {
-        margin-left: 30px !important;
-        margin-right: 16px !important;
-    }
-
-        .nav-search .form-control {
-            width: 240px !important;
-            max-width: 240px !important;
-        }
-
-    .hx-side-banner {
-        display: flex !important;
-        width: 150px !important;
-        top: 95px !important;
-    }
-
-    .hx-banner-left {
-        left: 8px !important;
-    }
-
-    .hx-banner-right {
-        right: 8px !important;
-    }
-
-    .home-hero,
-    .home-booking-center,
-    .movie-section {
-        padding-left: 175px !important;
-        padding-right: 175px !important;
-    }
-
-    .hx-top-ad {
-        width: calc(100% - 350px) !important;
-        max-width: none !important;
-        height: 92px !important;
-    }
-
-    .banner-slide {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-        .banner-slide img {
-            height: clamp(330px, 31vw, 430px) !important;
-        }
-
-    .section-title,
-    .movie-tabs {
-        width: 100% !important;
-        max-width: 1000px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    .home-movies .movie-track {
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-        max-width: 1000px !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        gap: 18px !important;
-        padding: 0 !important;
-    }
-
-    .home-movies .movie-card {
-        min-width: 0 !important;
-    }
-
-        .home-movies .movie-card img {
-            width: 100% !important;
-            height: 290px !important;
-            object-fit: cover !important;
-        }
-
-    .home-movies .movie-info {
-        min-height: 125px !important;
-        padding: 12px !important;
-    }
-
-        .home-movies .movie-info h3 {
-            font-size: 16px !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-        }
-
-    .movie-actions {
-        grid-template-columns: 1fr 1fr !important;
-        gap: 7px !important;
-    }
-
-        .movie-actions a {
-            font-size: 12px !important;
-            padding: 8px 4px !important;
-        }
-
-    .movies-page,
-    .showtime-page,
-    .showtime-container,
-    .booking-page,
-    .info-page,
-    .about-havenix-page {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-
-    .booking-page {
-        max-width: 1200px !important;
-    }
-
-    .booking-card {
-        grid-template-columns: minmax(260px, 320px) minmax(0, 1fr) !important;
-    }
-
-    .site-footer .container {
-        width: min(1200px, calc(100% - 32px)) !important;
-        max-width: 1200px !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1.4fr 1fr 1fr 1fr !important;
-        gap: 28px !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-}
-
-/* =========================================================
-   RESPONSIVE - TABLET / LAPTOP NHỎ
-========================================================= */
-@media (max-width: 1199px) {
-    .hx-side-banner {
-        display: none !important;
-    }
-
-    .home-hero,
-    .home-booking-center,
-    .movie-section,
-    .movies-page,
-    .showtime-page,
-    .showtime-container,
-    .booking-page,
-    .info-page,
-    .about-havenix-page {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-    }
-
-    .site-footer .container {
-        width: min(960px, calc(100% - 32px)) !important;
-        max-width: 960px !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .hx-top-ad {
-        width: 100% !important;
-        height: 82px !important;
-    }
-
-    .banner-slide {
-        width: calc(100% - 28px) !important;
-    }
-
-    .home-movies .movie-track,
-    .movies-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, minmax(220px, 1fr)) !important;
-        width: min(760px, 100%) !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        gap: 22px !important;
-    }
-
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 28px !important;
-        padding: 38px 0 !important;
-    }
-}
-
-@media (max-width: 991px) {
-    body {
-        padding-top: 76px !important;
-    }
-
-    .custom-navbar .container {
-        max-width: 100% !important;
-        padding-left: 14px !important;
-        padding-right: 14px !important;
-    }
-
-    .navbar-brand {
-        margin-right: 0 !important;
-    }
-
-    .nav-search {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    .custom-navbar,
-    .custom-navbar .container,
-    .navbar-brand {
-        height: 70px !important;
-        min-height: 70px !important;
-    }
-
-    .navbar-collapse {
-        max-height: calc(100vh - 90px) !important;
-        overflow-y: auto !important;
-        margin-top: 15px;
-        background: #5b0b0b;
-        border-radius: 18px;
-        padding: 15px;
-    }
-
-    .navbar-nav {
-        align-items: stretch;
-    }
-
-    .nav-search {
-        width: 100% !important;
-        margin: 14px 0 !important;
-    }
-
-        .nav-search .form-control {
-            max-width: none !important;
-            width: 100% !important;
-        }
-
-    .navbar-toggler {
-        border: 1px solid rgba(255,255,255,.5);
-        background: #facc15;
-    }
-
-    .banner-slide img {
-        height: clamp(240px, 38vw, 340px) !important;
-    }
-
-    .movie-detail-box,
-    .booking-card,
-    .schedule-card,
-    .about-havenix-page {
-        grid-template-columns: 1fr !important;
-    }
-
-    .detail-poster img,
-    .booking-poster img,
-    .schedule-img {
-        width: 100% !important;
-        max-height: 520px !important;
-        object-fit: cover !important;
-    }
-
-    .about-sidebar {
-        position: static !important;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
-    .schedule-img {
-        height: 420px;
-    }
-}
-
-/* =========================================================
-   RESPONSIVE - MOBILE
-========================================================= */
-@media (max-width: 650px) {
-    body {
-        padding-top: 72px !important;
-    }
-
-    .navbar-brand {
-        font-size: 23px !important;
-    }
-
-    .hx-top-ad,
-    .hx-film-line,
-    .hx-side-banner {
-        display: none !important;
-    }
-
-    .banner-slide {
-        width: calc(100% - 22px) !important;
-        margin-top: 10px !important;
-        border-radius: 14px !important;
-    }
-
-        .banner-slide img {
-            height: clamp(190px, 58vw, 250px) !important;
-        }
-
-    .home-booking-center .btn {
-        width: auto !important;
-        padding: 13px 32px !important;
-        font-size: 16px !important;
-    }
-
-    .movie-section {
-        padding: 32px 10px !important;
-    }
-
-    .section-title {
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        gap: 10px !important;
-    }
-
-        .section-title h2 {
-            font-size: 27px !important;
-        }
-
-    .movie-tabs {
-        justify-content: center !important;
-        gap: 8px !important;
-    }
-
-        .movie-tabs .tab-btn {
-            flex: 1 !important;
-            min-width: 0 !important;
-            padding: 12px 6px !important;
-            font-size: 14px !important;
-        }
-
-    .home-movies .movie-track,
-    .movies-grid {
-        grid-template-columns: 1fr !important;
-        width: min(360px, 100%) !important;
-        padding: 0 !important;
-    }
-
-    .home-movies .movie-card img,
-    .movies-card img,
-    .movie-poster img {
-        height: clamp(360px, 115vw, 460px) !important;
-    }
-
-    .movie-actions,
-    .movies-actions {
-        grid-template-columns: 1fr !important;
-    }
-
-    .movie-filters form {
-        width: 100% !important;
-        padding: 14px !important;
-    }
-
-    .movie-filters select,
-    .btn-filter {
-        width: 100% !important;
-    }
-
-    .search-result-box {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        font-size: 14px !important;
-    }
-
-
-    .movie-detail-box,
-    .booking-card,
-    .movie-showtime-box,
-    .info-page,
-    .about-content {
-        width: calc(100% - 24px) !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding: 20px !important;
-        border-radius: 18px !important;
-    }
-
-    .date-tabs .tab-btn {
-        min-width: 132px;
-        font-size: 14px;
-    }
-
-    .time-btn {
-        width: calc(50% - 8px);
-        min-width: 0;
-        font-size: 15px;
-    }
-
-    .about-sidebar {
-        grid-template-columns: 1fr;
-    }
-
-    .about-content h1 {
-        font-size: 28px;
-    }
-
-    .about-banner {
-        height: 230px;
-    }
-
-    .auth-page {
-        align-items: flex-start;
-        padding: 25px 14px;
-    }
-
-    .auth-card {
-        max-width: 100%;
-        padding: 24px 18px;
-        border-radius: 18px;
-    }
-
-        .auth-card h2 {
-            font-size: 28px;
-        }
-
-    .auth-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .site-footer .container {
-        width: calc(100% - 32px) !important;
-        max-width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-        padding: 32px 0 !important;
-    }
-
-    .hx-social {
-        flex-wrap: wrap !important;
-    }
-
-    .seat-row,
-    .couple-row {
-        overflow-x: auto;
-        justify-content: flex-start;
-    }
-}
-
-@media (max-width: 390px) {
-    .navbar-brand {
-        font-size: 20px !important;
-    }
-
-    .banner-slide img {
-        height: 190px !important;
-    }
-
-    .home-movies .movie-card img,
-    .movies-card img {
-        height: 380px !important;
-    }
-
-    .time-btn {
-        width: 100% !important;
-    }
-}
-
-
-/* =========================
-   RESPONSIVE DETAIL/SHOWTIME WIDTH
-========================= */
-@media (max-width: 1199px) {
-    .movie-detail-box,
-    .movie-showtime-box,
-    .showtime-container,
-    .showtime-page {
-        width: calc(100% - 24px) !important;
-        max-width: calc(100% - 24px) !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    .showtime-container,
-    .showtime-page {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-}
-
-@media (max-width: 650px) {
-    .movie-showtime-box,
-    .showtime-container,
-    .showtime-page {
-        padding: 20px !important;
-    }
-
-    .showtime-container,
-    .showtime-page {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-}
-
-/* Màn hình thấp khi trình chiếu */
-@media (max-height: 760px) and (min-width: 992px) {
-    body {
-        padding-top: 76px !important;
-    }
-
-    .custom-navbar,
-    .custom-navbar .container,
-    .navbar-brand {
-        height: 68px !important;
-        min-height: 68px !important;
-    }
-
-    .navbar-brand {
-        font-size: 26px !important;
-    }
-
-    .navbar-nav .nav-link,
-    .nav-search,
-    .nav-search .form-control,
-    .nav-search .btn {
-        height: 38px !important;
-    }
-
-    .navbar-nav .nav-link {
-        padding: 0 14px !important;
-        font-size: 15px !important;
-    }
-
-    .hx-top-ad {
-        height: 76px !important;
-    }
-
-    .banner-slide img {
-        height: min(420px, calc(100vh - 250px)) !important;
-    }
-}
-
-/* POPUP THÔNG BÁO PHIM */
 .movie-popup-overlay {
     position: fixed;
     inset: 0;
@@ -2191,11 +1410,6 @@ body {
     cursor: pointer;
 }
 
-/* =========================================================
-   HOME MOVIE SLIDER - FIXED
-   Dùng với HTML:
-   .movie-slider-wrap > .movie-arrow + #dangChieuTrack.movie-track-slider > .movie-card
-========================================================= */
 .home-movies .movie-slider-wrap {
     position: relative !important;
     width: min(1058px, 100%) !important;
@@ -2305,42 +1519,257 @@ body {
         color: #facc15 !important;
     }
 
-/* Ẩn scrollbar nếu trình duyệt tự hiện */
 .home-movies .movie-track-slider::-webkit-scrollbar {
     display: none !important;
 }
 
-/* Tắt bộ cinema slider cũ nếu còn sót CSS/HTML */
-.home-movies .cinema-slider-wrap,
-.home-movies .cinema-track,
-.home-movies .cinema-card,
-.home-movies .cinema-book-btn,
-.home-movies .cinema-arrow {
+.home-movies .cinema-slider-wrap, .home-movies .cinema-track, .home-movies .cinema-card, .home-movies .cinema-book-btn, .home-movies .cinema-arrow {
     all: unset;
 }
 
-/* Responsive slider */
-@media (max-width: 1199px) {
-    .home-movies .movie-slider-wrap {
-        width: min(538px, 100%) !important;
-        max-width: 538px !important;
-        padding: 0 38px !important;
+.navbar-nav .nav-link.register-link:hover, .navbar-nav .nav-link.register-link:focus, .navbar-nav .nav-link.register-link:active {
+    background: transparent !important;
+    color: #facc15 !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.navbar-nav .nav-link.register-link:visited {
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link.register-link {
+    background: transparent !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 999px !important;
+    padding: 0 18px !important;
+}
+
+    .navbar-nav .nav-link.register-link:hover, .navbar-nav .nav-link.register-link.active, .navbar-nav .nav-link.register-link:focus {
+        background: transparent !important;
+        color: #facc15 !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        transform: none !important;
     }
 
-    .home-movies .movie-track-slider .movie-card {
-        flex: 0 0 220px !important;
-        min-width: 220px !important;
-        max-width: 220px !important;
+.main-menu .nav-link, .navbar-nav .nav-link {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+    .main-menu .nav-link:hover, .main-menu .nav-link.active, .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+        background: transparent !important;
+        color: #facc15 !important;
+        box-shadow: none !important;
+        transform: none !important;
     }
 
-    .home-movies .movie-arrow {
-        width: 36px !important;
-        height: 66px !important;
-        font-size: 34px !important;
+    .navbar-nav .nav-link[href*="Login"], .navbar-nav .nav-link.register-link {
+        background: transparent !important;
+        color: #fff !important;
     }
+
+        .navbar-nav .nav-link[href*="Login"]:hover, .navbar-nav .nav-link.register-link:hover {
+            background: transparent !important;
+            color: #facc15 !important;
+        }
+
+@media (max-width:768px) {
+    .movie-filters {
+        width: 95%;
+        padding: 15px;
+    }
+
+        .movie-filters form {
+            flex-direction: column;
+        }
+
+        .movie-filters select, .btn-filter {
+            width: 100%;
+        }
 }
 
 @media (max-width: 650px) {
+    .seat-status-box {
+        width: 100% !important;
+    }
+
+    .seat-status-item {
+        font-size: 14px !important;
+    }
+
+    body {
+        padding-top: 72px !important;
+    }
+
+    .navbar-brand {
+        font-size: 23px !important;
+    }
+
+    .hx-top-ad, .hx-film-line, .hx-side-banner {
+        display: none !important;
+    }
+
+    .banner-slide {
+        width: calc(100% - 22px) !important;
+        margin-top: 10px !important;
+        border-radius: 14px !important;
+    }
+
+        .banner-slide img {
+            height: clamp(190px, 58vw, 250px) !important;
+        }
+
+    .home-booking-center .btn {
+        width: auto !important;
+        padding: 13px 32px !important;
+        font-size: 16px !important;
+    }
+
+    .movie-section {
+        padding: 32px 10px !important;
+    }
+
+    .section-title {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+
+        .section-title h2 {
+            font-size: 27px !important;
+        }
+
+    .movie-tabs {
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+
+        .movie-tabs .tab-btn {
+            flex: 1 !important;
+            min-width: 0 !important;
+            padding: 12px 6px !important;
+            font-size: 14px !important;
+        }
+
+    .home-movies .movie-track, .movies-grid {
+        grid-template-columns: 1fr !important;
+        width: min(360px, 100%) !important;
+        padding: 0 !important;
+    }
+
+    .home-movies .movie-card img, .movies-card img, .movie-poster img {
+        height: clamp(360px, 115vw, 460px) !important;
+    }
+
+    .movie-actions, .movies-actions {
+        grid-template-columns: 1fr !important;
+    }
+
+    .movie-filters form {
+        width: 100% !important;
+        padding: 14px !important;
+    }
+
+    .movie-filters select, .btn-filter {
+        width: 100% !important;
+    }
+
+    .search-result-box {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: 14px !important;
+    }
+
+    .movie-detail-box, .booking-card, .movie-showtime-box, .info-page, .about-content {
+        width: calc(100% - 24px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 20px !important;
+        border-radius: 18px !important;
+    }
+
+    .date-tabs .tab-btn {
+        min-width: 132px;
+        font-size: 14px;
+    }
+
+    .time-btn {
+        width: calc(50% - 8px);
+        min-width: 0;
+        font-size: 15px;
+    }
+
+    .about-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content h1 {
+        font-size: 28px;
+    }
+
+    .about-banner {
+        height: 230px;
+    }
+
+    .auth-page {
+        align-items: flex-start;
+        padding: 25px 14px;
+    }
+
+    .auth-card {
+        max-width: 100%;
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+        .auth-card h2 {
+            font-size: 28px;
+        }
+
+    .auth-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-footer .container {
+        width: calc(100% - 32px) !important;
+        max-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        padding: 32px 0 !important;
+    }
+
+    .hx-social {
+        flex-wrap: wrap !important;
+    }
+
+    .seat-row, .couple-row {
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .movie-showtime-box, .showtime-container, .showtime-page {
+        padding: 20px !important;
+    }
+
+    .showtime-container, .showtime-page {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     .home-movies .movie-slider-wrap {
         width: min(340px, 100%) !important;
         max-width: 340px !important;
@@ -2365,5 +1794,402 @@ body {
         width: 32px !important;
         height: 62px !important;
         font-size: 30px !important;
+    }
+}
+
+@media (min-width: 1537px) {
+    .hx-side-banner {
+        display: flex !important;
+        width: 180px !important;
+        top: 95px !important;
+    }
+
+    .hx-banner-left {
+        left: 12px !important;
+    }
+
+    .hx-banner-right {
+        right: 12px !important;
+    }
+
+    .home-hero, .home-booking-center, .movie-section {
+        padding-left: 220px !important;
+        padding-right: 220px !important;
+    }
+
+    .hx-top-ad {
+        width: calc(100% - 440px) !important;
+        max-width: 1250px !important;
+        height: 100px !important;
+    }
+
+    .banner-slide {
+        max-width: 1250px !important;
+    }
+
+    .section-title, .movie-tabs {
+        max-width: 1200px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .home-movies .movie-track {
+        grid-template-columns: repeat(4, 220px) !important;
+        gap: 26px !important;
+        max-width: 1200px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .home-movies .movie-card img {
+        height: 320px !important;
+        object-fit: cover !important;
+    }
+
+    .movies-page, .showtime-page, .showtime-container, .booking-page, .info-page, .about-havenix-page {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .site-footer .container {
+        width: min(1200px, calc(100% - 32px)) !important;
+        max-width: 1200px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+@media (max-width: 1536px) and (min-width: 1200px) {
+    .custom-navbar .container {
+        max-width: 1160px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    .navbar-brand {
+        margin-right: 38px !important;
+    }
+
+    .nav-search {
+        margin-left: 30px !important;
+        margin-right: 16px !important;
+    }
+
+        .nav-search .form-control {
+            width: 240px !important;
+            max-width: 240px !important;
+        }
+
+    .hx-side-banner {
+        display: flex !important;
+        width: 150px !important;
+        top: 95px !important;
+    }
+
+    .hx-banner-left {
+        left: 8px !important;
+    }
+
+    .hx-banner-right {
+        right: 8px !important;
+    }
+
+    .home-hero, .home-booking-center, .movie-section {
+        padding-left: 175px !important;
+        padding-right: 175px !important;
+    }
+
+    .hx-top-ad {
+        width: calc(100% - 350px) !important;
+        max-width: none !important;
+        height: 92px !important;
+    }
+
+    .banner-slide {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+        .banner-slide img {
+            height: clamp(330px, 31vw, 430px) !important;
+        }
+
+    .section-title, .movie-tabs {
+        width: 100% !important;
+        max-width: 1000px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .home-movies .movie-track {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        max-width: 1000px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        gap: 18px !important;
+        padding: 0 !important;
+    }
+
+    .home-movies .movie-card {
+        min-width: 0 !important;
+    }
+
+        .home-movies .movie-card img {
+            width: 100% !important;
+            height: 290px !important;
+            object-fit: cover !important;
+        }
+
+    .home-movies .movie-info {
+        min-height: 125px !important;
+        padding: 12px !important;
+    }
+
+        .home-movies .movie-info h3 {
+            font-size: 16px !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+
+    .movie-actions {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 7px !important;
+    }
+
+        .movie-actions a {
+            font-size: 12px !important;
+            padding: 8px 4px !important;
+        }
+
+    .movies-page, .showtime-page, .showtime-container, .booking-page, .info-page, .about-havenix-page {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .booking-page {
+        max-width: 1200px !important;
+    }
+
+    .booking-card {
+        grid-template-columns: minmax(260px, 320px) minmax(0, 1fr) !important;
+    }
+
+    .site-footer .container {
+        width: min(1200px, calc(100% - 32px)) !important;
+        max-width: 1200px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr 1fr !important;
+        gap: 28px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .hx-side-banner {
+        display: none !important;
+    }
+
+    .home-hero, .home-booking-center, .movie-section, .movies-page, .showtime-page, .showtime-container, .booking-page, .info-page, .about-havenix-page {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .site-footer .container {
+        width: min(960px, calc(100% - 32px)) !important;
+        max-width: 960px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .hx-top-ad {
+        width: 100% !important;
+        height: 82px !important;
+    }
+
+    .banner-slide {
+        width: calc(100% - 28px) !important;
+    }
+
+    .home-movies .movie-track, .movies-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(220px, 1fr)) !important;
+        width: min(760px, 100%) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        gap: 22px !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 28px !important;
+        padding: 38px 0 !important;
+    }
+
+    .movie-detail-box, .movie-showtime-box, .showtime-container, .showtime-page {
+        width: calc(100% - 24px) !important;
+        max-width: calc(100% - 24px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .showtime-container, .showtime-page {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .home-movies .movie-slider-wrap {
+        width: min(538px, 100%) !important;
+        max-width: 538px !important;
+        padding: 0 38px !important;
+    }
+
+    .home-movies .movie-track-slider .movie-card {
+        flex: 0 0 220px !important;
+        min-width: 220px !important;
+        max-width: 220px !important;
+    }
+
+    .home-movies .movie-arrow {
+        width: 36px !important;
+        height: 66px !important;
+        font-size: 34px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    body {
+        padding-top: 76px !important;
+    }
+
+    .custom-navbar .container {
+        max-width: 100% !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .navbar-brand {
+        margin-right: 0 !important;
+    }
+
+    .custom-navbar, .custom-navbar .container, .navbar-brand {
+        height: 70px !important;
+        min-height: 70px !important;
+    }
+
+    .navbar-collapse {
+        max-height: calc(100vh - 90px) !important;
+        overflow-y: auto !important;
+        margin-top: 15px;
+        background: #5b0b0b;
+        border-radius: 18px;
+        padding: 15px;
+    }
+
+    .navbar-nav {
+        align-items: stretch;
+    }
+
+    .nav-search {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        margin: 14px 0 !important;
+    }
+
+        .nav-search .form-control {
+            max-width: none !important;
+            width: 100% !important;
+        }
+
+    .navbar-toggler {
+        border: 1px solid rgba(255,255,255,.5);
+        background: #facc15;
+    }
+
+    .banner-slide img {
+        height: clamp(240px, 38vw, 340px) !important;
+    }
+
+    .movie-detail-box, .booking-card, .schedule-card, .about-havenix-page {
+        grid-template-columns: 1fr !important;
+    }
+
+    .detail-poster img, .booking-poster img, .schedule-img {
+        width: 100% !important;
+        max-height: 520px !important;
+        object-fit: cover !important;
+    }
+
+    .about-sidebar {
+        position: static !important;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .schedule-img {
+        height: 420px;
+    }
+}
+
+@media (max-width: 390px) {
+    .navbar-brand {
+        font-size: 20px !important;
+    }
+
+    .banner-slide img {
+        height: 190px !important;
+    }
+
+    .home-movies .movie-card img, .movies-card img {
+        height: 380px !important;
+    }
+
+    .time-btn {
+        width: 100% !important;
+    }
+}
+
+@media (max-height: 760px) and (min-width: 992px) {
+    body {
+        padding-top: 76px !important;
+    }
+
+    .custom-navbar, .custom-navbar .container, .navbar-brand {
+        height: 68px !important;
+        min-height: 68px !important;
+    }
+
+    .navbar-brand {
+        font-size: 26px !important;
+    }
+
+    .navbar-nav .nav-link, .nav-search, .nav-search .form-control, .nav-search .btn {
+        height: 38px !important;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0 14px !important;
+        font-size: 15px !important;
+    }
+
+    .hx-top-ad {
+        height: 76px !important;
+    }
+
+    .banner-slide img {
+        height: min(420px, calc(100vh - 250px)) !important;
     }
 }
